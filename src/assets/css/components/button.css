@@ -1,0 +1,102 @@
+.btn {
+  @apply inline-flex cursor-pointer items-center justify-center rounded-lg px-4 py-2 
+   text-center tracking-wide outline-none transition-all duration-200
+   focus:outline-none
+   hover:opacity-90;
+}
+
+/* button size */
+.btn-xs {
+  @apply px-2 py-1 text-xs;
+}
+.btn-sm {
+  @apply px-2.5 py-1.5 text-sm;
+}
+.btn-md {
+  @apply px-5 py-2;
+}
+.btn-lg {
+  @apply px-7.5 py-2.5 text-lg;
+}
+.btn-xl {
+  @apply px-10 py-3 text-xl;
+}
+.btn-2xl {
+  @apply px-15 py-4.5 text-2xl;
+}
+
+/* button disabled */
+.btn[disabled] {
+  @apply cursor-not-allowed opacity-60;
+}
+
+/* button block */
+.btn-block {
+  @apply w-full;
+}
+
+/* button with icon */
+.btn-with-icon {
+  @apply space-x-2;
+}
+.btn-icon {
+  @apply p-2 hover:opacity-90;
+}
+
+/* button color */
+/* button color - system color */
+.btn-light-dark {
+  @apply bg-white dark:bg-slate-800;
+}
+.btn-outline-system-color {
+  @apply border-white border border-white text-white hover:bg-white
+    dark:border-slate-800 dark:border border-slate-800 dark:text-slate-800 dark:hover:bg-slate-800;
+}
+/* button color */
+/* button color - primary */
+.btn-primary {
+  @apply border-primary bg-primary text-white;
+}
+.btn-outline-primary {
+  @apply border-primary border border-primary text-primary hover:bg-primary hover:text-white;
+}
+/* button color - secondary */
+.btn-secondary {
+  @apply border-secondary bg-secondary text-white;
+}
+.btn-outline-secondary {
+  @apply border-secondary border border-secondary text-secondary hover:bg-secondary hover:text-white;
+}
+/* button color - info */
+.btn-info {
+  @apply border-info bg-info text-white;
+}
+.btn-outline-info {
+  @apply border-info border border-info text-info hover:bg-info hover:text-white;
+}
+/* button color - success */
+.btn-success {
+  @apply border-success bg-success text-white;
+}
+.btn-outline-success {
+  @apply border-success border border-success text-success hover:bg-success hover:text-white;
+}
+/* button color - warning */
+.btn-warning {
+  @apply border-warning bg-warning text-white;
+}
+.btn-outline-warning {
+  @apply border-warning border border-warning text-warning hover:bg-warning hover:text-white;
+}
+/* button color - danger */
+.btn-danger {
+  @apply border-danger bg-danger text-white;
+}
+.btn-outline-danger {
+  @apply border-danger border border-danger text-danger hover:bg-danger hover:text-white;
+}
+
+/* button group */
+.btn-group {
+  @apply relative inline-flex align-middle;
+}

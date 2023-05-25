@@ -1,0 +1,35 @@
+.avatar {
+  @apply relative inline-flex shrink-0 text-base h-14 w-14;
+}
+.avatar > img {
+  @apply h-full w-full object-cover object-center;
+}
+.avatar-initial {
+  @apply flex h-full w-full items-center justify-center font-extrabold;
+}
+.avatar-indicator {
+  @apply absolute bottom-0 left-0 h-3 w-3 rounded-full ring-2 ring-white dark:ring-slate-800 bg-warning;
+}
+.avatar-ring {
+  @apply ring-2 ring-white dark:ring-slate-800;
+}
+
+/* avatar size */
+.avatar-xs {
+  @apply text-xs h-10 w-10;
+}
+.avatar-sm {
+  @apply text-sm h-12 w-12;
+}
+.avatar-base {
+  @apply text-base h-14 w-14;
+}
+.avatar-lg {
+  @apply text-lg h-16 w-16;
+}
+.avatar-xl {
+  @apply text-xl h-18 w-18;
+}
+.avatar-2xl {
+  @apply text-2xl h-20 w-20;
+}

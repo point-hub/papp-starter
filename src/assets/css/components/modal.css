@@ -1,0 +1,9 @@
+.modal-dialog {
+  @apply fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5;
+}
+.modal-backdrop {
+  @apply absolute inset-0 bg-slate-900/60 transition-opacity duration-300;
+}
+.modal-container {
+  @apply dark:bg-slate-700 relative max-w-lg rounded-lg bg-green px-4 py-6 text-center transition-opacity duration-300 sm:px-5;
+}

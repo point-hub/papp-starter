@@ -1,0 +1,27 @@
+.card {
+  @apply border border-[#e0e6ed] bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] dark:border-[#1b2e4b] dark:bg-slate-800 dark:shadow-none;
+}
+
+.card-template {
+  @apply p-4 space-y-5;
+}
+
+.card-header {
+  @apply flex justify-between;
+}
+
+.card-code {
+  @apply transform-gpu bg-slate-800 px-2 text-slate-400 transition-all dark:bg-slate-700;
+}
+
+.card-code-label {
+  @apply p-1 text-sm;
+}
+
+.card-code-active {
+  @apply max-h-[1000px] overflow-auto py-2;
+}
+
+.card-code-inactive {
+  @apply max-h-0 overflow-hidden;
+}

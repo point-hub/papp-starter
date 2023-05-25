@@ -1,0 +1,79 @@
+.alert {
+  @apply flex justify-between items-start space-x-2 rounded-lg;
+}
+
+.alert-text {
+  @apply py-4 pl-4;
+}
+
+.alert-icon-container {
+  @apply flex items-start;
+}
+
+.alert-icon {
+  @apply w-6 h-6 py-5 pl-4;
+}
+
+.alert .close-button {
+  @apply hover:opacity-80 pr-2 py-2;
+}
+
+/* solid */
+.alert-primary {
+  @apply bg-primary text-white;
+}
+.alert-secondary {
+  @apply bg-secondary text-white;
+}
+.alert-info {
+  @apply bg-info text-white;
+}
+.alert-success {
+  @apply bg-success text-white;
+}
+.alert-warning {
+  @apply bg-warning text-white;
+}
+.alert-danger {
+  @apply bg-danger text-white;
+}
+
+/* outline */
+.alert-outline-primary {
+  @apply border border-primary text-primary;
+}
+.alert-outline-secondary {
+  @apply border border-secondary text-secondary;
+}
+.alert-outline-info {
+  @apply border border-info text-info;
+}
+.alert-outline-success {
+  @apply border border-success text-success;
+}
+.alert-outline-warning {
+  @apply border border-warning text-warning;
+}
+.alert-outline-danger {
+  @apply border border-danger text-danger;
+}
+
+/* indicator */
+.alert .indicator-primary {
+  @apply p-2 rounded-l bg-primary;
+}
+.alert .indicator-secondary {
+  @apply p-2 rounded-l bg-secondary;
+}
+.alert .indicator-info {
+  @apply p-2 rounded-l bg-info;
+}
+.alert .indicator-success {
+  @apply p-2 rounded-l bg-success;
+}
+.alert .indicator-warning {
+  @apply p-2 rounded-l bg-warning;
+}
+.alert .indicator-danger {
+  @apply p-2 rounded-l bg-danger;
+}

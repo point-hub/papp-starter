@@ -1,0 +1,15 @@
+.divider-horizontal {
+  @apply mx-4 flex flex-col items-center space-y-3;
+}
+
+.divider-horizontal-line {
+  @apply w-px flex-1 bg-slate-200 dark:bg-slate-500;
+}
+
+.divider-vertical {
+  @apply my-4 flex items-center space-x-3;
+}
+
+.divider-vertical-line {
+  @apply h-px flex-1 bg-slate-200 dark:bg-slate-500;
+}

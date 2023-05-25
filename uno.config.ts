@@ -1,64 +1,44 @@
-import dotenv from 'dotenv'
-import { defineConfig, presetUno, presetIcons } from 'unocss'
+import { defineConfig, presetUno, presetWebFonts } from 'unocss'
 import transformerDirectives from '@unocss/transformer-directives'
+import presetMain from './src/assets/presets/preset-main'
+import { config } from 'dotenv'
 
-dotenv.config({
-  path: '.env.local'
-})
+config()
 
 export default defineConfig({
   presets: [
-    presetUno(),
-    presetIcons({
-      cdn: 'https://esm.sh/',
-      collections: {
-        fab: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/brands/${iconName}.svg`).then((res) =>
-            res.text()
-          ),
-        far: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/regular/${iconName}.svg`).then((res) =>
-            res.text()
-          ),
-        fas: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/solid/${iconName}.svg`).then((res) =>
-            res.text()
-          ),
-        fal: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/light/${iconName}.svg`).then((res) =>
-            res.text()
-          ),
-        fat: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/thin/${iconName}.svg`).then((res) =>
-            res.text()
-          ),
-        fad: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/duotone/${iconName}.svg`).then((res) =>
-            res.text()
-          ),
-        fasr: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/sharp-regular/${iconName}.svg`).then(
-            (res) => res.text()
-          ),
-        fass: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/sharp-solid/${iconName}.svg`).then(
-            (res) => res.text()
-          ),
-        fasl: async (iconName: string) =>
-          await fetch(`${process.env.VITE_FONTAWESOME_CDN}/sharp-light/${iconName}.svg`).then(
-            (res) => res.text()
-          )
-      },
-      customizations: {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        transform(svg, collection, icon) {
-          if (['fab', 'far', 'fas', 'fal', 'fat', 'fad'].includes(collection))
-            return svg.replace('path', 'path fill="currentColor"')
-
-          return svg
-        }
+    presetUno({ mode: 'vue-scoped' }),
+    presetWebFonts({
+      provider: 'google', // default provider
+      fonts: {
+        monserrat: [
+          {
+            name: 'Montserrat',
+            weights: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+            italic: true
+          }
+        ],
+        roboto: [
+          {
+            name: 'Roboto',
+            weights: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+            italic: true
+          }
+        ]
       }
-    })
+    }),
+    presetMain()
   ],
-  transformers: [transformerDirectives()]
+  transformers: [transformerDirectives()],
+  theme: {
+    colors: {
+      primary: '#321fda',
+      secondary: '#9da5b1',
+      info: '#3399ff',
+      success: '#2eb85c',
+      warning: '#f9b115',
+      danger: '#e55353'
+    }
+  },
+  safelist: ['i-fad-house-chimney', 'i-fad-wand-magic-sparkles']
 })

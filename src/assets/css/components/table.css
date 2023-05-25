@@ -1,0 +1,32 @@
+.table-container {
+  @apply min-w-full overflow-x-auto;
+}
+
+.table {
+  @apply w-full text-left;
+}
+
+.basic-table-row {
+  @apply dark:border-b-slate-500 border border-transparent border-b-slate-200;
+}
+
+/* basic table */
+.basic-table-head {
+  @apply dark:text-slate-100 whitespace-nowrap p-3 font-semibold uppercase text-slate-800 lg:px-5;
+}
+.basic-table-body {
+  @apply px-4 py-3 sm:px-5 align-top;
+}
+
+/* bordered table */
+.bordered-table-head {
+  @apply dark:border-slate-500 dark:text-slate-100 whitespace-nowrap border border-slate-200 p-3 font-semibold uppercase text-slate-800 lg:px-5;
+}
+.bordered-table-body {
+  @apply dark:border-slate-500 border border-slate-200 p-3 lg:px-5 align-top;
+}
+
+table td.expand,
+table th.expand {
+  width: 99%;
+}

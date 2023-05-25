@@ -1,0 +1,50 @@
+:root {
+  @apply [--sidebar-shortcut-width:4.5rem] [--sidebar-panel-width:15rem];
+}
+
+html.dark {
+  @apply [color-scheme:dark];
+}
+
+body {
+  @apply font-sans text-slate-700 dark:text-slate-300 antialiased;
+}
+
+/* headings */
+h1 {
+  @apply text-3xl font-monserrat;
+}
+
+h2 {
+  @apply text-2xl font-monserrat;
+}
+
+h3 {
+  @apply text-xl font-monserrat;
+}
+
+.highlight {
+  @apply bg-slate-200 dark:bg-slate-700 px-1;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  @apply w-1 h-1 rounded-lg;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-500 rounded-lg;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}
+
+.scrollbar-hidden {
+  @apply [scrollbar-width:none]; /* Firefox */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  @apply hidden;
+}

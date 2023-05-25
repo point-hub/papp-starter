@@ -1,0 +1,15 @@
+.breadcrumb-list {
+  @apply scrollbar-hidden flex items-center gap-2 overflow-x-auto text-sm text-slate-500;
+}
+
+.breadcrumb-item {
+  @apply flex items-center justify-center gap-2;
+}
+
+.breadcrumb-separator {
+  @apply bg-slate-300 dark:bg-slate-600;
+}
+
+.breadcrumb-link {
+  @apply text-blue-500;
+}

@@ -1,0 +1,73 @@
+.progress-container {
+  @apply relative flex w-full overflow-hidden rounded-full h-3 bg-slate-100 dark:bg-slate-700;
+}
+
+.progress-bar {
+  @apply flex justify-between rounded-full px-3;
+}
+
+/* size */
+.progress-xs {
+  @apply h-1;
+}
+.progress-sm {
+  @apply h-2;
+}
+.progress-md {
+  @apply h-3;
+}
+.progress-lg {
+  @apply h-4;
+}
+.progress-lg p {
+  @apply text-xs;
+}
+.progress-xl {
+  @apply h-5;
+}
+.progress-xl p {
+  @apply text-sm;
+}
+.progress-2xl {
+  @apply h-6;
+}
+.progress-2xl p {
+  @apply text-base;
+}
+
+/* indeterminate */
+.progress-container .is-indeterminate {
+  @apply relative;
+  animation: progress-increase 2s infinite;
+}
+
+@keyframes progress-increase {
+  from {
+    left: -5%;
+    width: 5%;
+  }
+  to {
+    left: 125%;
+    width: 100%;
+  }
+}
+
+/* color */
+.progress-primary {
+  @apply bg-primary text-white;
+}
+.progress-secondary {
+  @apply bg-secondary text-white;
+}
+.progress-info {
+  @apply bg-info text-white;
+}
+.progress-success {
+  @apply bg-success text-white;
+}
+.progress-warning {
+  @apply bg-warning text-white;
+}
+.progress-danger {
+  @apply bg-danger text-white;
+}

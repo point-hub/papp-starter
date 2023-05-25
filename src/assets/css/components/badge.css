@@ -1,0 +1,58 @@
+.badge {
+  @apply inline-flex items-center justify-center rounded px-2 py-1 text-xs
+   text-center tracking-wide outline-none transition-all duration-200
+   focus:outline-none
+   hover:opacity-90;
+}
+
+/* badge with icon */
+.badge-with-icon {
+  @apply space-x-1;
+}
+.badge-icon {
+  @apply p-1 hover:opacity-90;
+}
+
+/* badge color */
+/* badge color - primary */
+.badge-primary {
+  @apply border-primary bg-primary text-white;
+}
+.badge-outline-primary {
+  @apply border-primary border border-primary text-primary hover:bg-primary hover:text-white;
+}
+/* badge color - secondary */
+.badge-secondary {
+  @apply border-secondary bg-secondary text-white;
+}
+.badge-outline-secondary {
+  @apply border-secondary border border-secondary text-secondary hover:bg-secondary hover:text-white;
+}
+/* badge color - info */
+.badge-info {
+  @apply border-info bg-info text-white;
+}
+.badge-outline-info {
+  @apply border-info border border-info text-info hover:bg-info hover:text-white;
+}
+/* badge color - success */
+.badge-success {
+  @apply border-success bg-success text-white;
+}
+.badge-outline-success {
+  @apply border-success border border-success text-success hover:bg-success hover:text-white;
+}
+/* badge color - warning */
+.badge-warning {
+  @apply border-warning bg-warning text-white;
+}
+.badge-outline-warning {
+  @apply border-warning border border-warning text-warning hover:bg-warning hover:text-white;
+}
+/* badge color - danger */
+.badge-danger {
+  @apply border-danger bg-danger text-white;
+}
+.badge-outline-danger {
+  @apply border-danger border border-danger text-danger hover:bg-danger hover:text-white;
+}
