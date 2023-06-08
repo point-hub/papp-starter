@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
+import { BaseSwitch } from '@/components/index'
 import { codeExample } from './example-disabled'
 
 const codeToggle = ref(false)

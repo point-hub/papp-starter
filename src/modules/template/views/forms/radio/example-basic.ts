@@ -1,6 +1,6 @@
 export const codeExample = `<script setup lang="ts">
 import { ref } from 'vue'
-import BaseRadio from '@/components/base-radio.vue'
+import { BaseRadio } from '@/components/index'
 
 const selected = ref('')
 </script>

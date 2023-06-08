@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseTreeview from '@/components/base-treeview.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseTreeview } from '@/components/index'
 import { codeExample } from './example-slot'
 
 const codeToggle = ref(false)

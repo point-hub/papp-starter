@@ -1,6 +1,6 @@
 export const codeExample = `<script setup lang="ts">
 import { ref } from 'vue'
-import BasePopper from '@/components/base-popper.vue'
+import { BasePopper } from '@/components/index'
 
 const activeTab = ref('all')
 </script>

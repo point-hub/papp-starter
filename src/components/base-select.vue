@@ -1,10 +1,10 @@
 <script lang="ts">
-interface OptionsInterface {
+export interface OptionsInterface {
   label: string
   [key: string]: any
 }
 
-interface Props {
+export interface Props {
   modelValue: any
   placeholder?: string
   border?: 'full' | 'simple' | 'none'
@@ -57,11 +57,7 @@ const selected = computed({
         </span>
       </ListboxButton>
 
-      <transition
-        leave-active-class="transition duration-100 ease-in"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
+      <transition>
         <ListboxOptions class="list-box-options">
           <ListboxOption
             v-slot="{ active, selected }"

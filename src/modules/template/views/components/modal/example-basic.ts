@@ -1,5 +1,5 @@
 export const codeExample = `<script setup lang="ts">
-import BaseModal from '@/components/base-modal.vue'
+import { BaseModal } from '@/components/index'
 const showModal = ref(false)
 </script>
 

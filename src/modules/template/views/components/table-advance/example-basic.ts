@@ -1,10 +1,10 @@
 export const codeExample = `<script setup lang="ts">
 import { ref } from 'vue'
-import BaseCheckbox from '@/components/base-checkbox.vue'
-import BaseAutocomplete from '@/components/base-autocomplete.vue'
-import BaseDropdown from '@/components/base-dropdown.vue'
-import BaseInput from '@/components/base-input.vue'
-import BaseSwitch from '@/components/base-switch.vue'
+import { BaseCheckbox } from '@/components/index'
+import { BaseAutocomplete } from '@/components/index'
+import { BaseDropdown } from '@/components/index'
+import { BaseInput } from '@/components/index'
+import { BaseSwitch } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const list = [

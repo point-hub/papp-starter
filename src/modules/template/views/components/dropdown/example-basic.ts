@@ -1,5 +1,5 @@
 export const codeExample = `<script setup lang="ts">
-import BaseDropdown from '@/components/base-dropdown.vue'
+import { BaseDropdown } from '@/components/index'
 </script>
 
 <template>

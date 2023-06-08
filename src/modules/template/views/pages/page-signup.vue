@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseInput from '@/components/base-input.vue'
+import { BaseInput } from '@/components/index'
 
 const form = ref({
   email: '',

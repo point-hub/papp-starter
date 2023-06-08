@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseRadio from '@/components/base-radio.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseRadio } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const selected = ref('')

@@ -1,6 +1,6 @@
 export const codeExample = `<script setup lang="ts">
 import { ref } from 'vue'
-import BaseRadioGroup from '@/components/base-radio-group.vue'
+import { BaseRadioGroup } from '@/components/index'
 
 const options = [
   {

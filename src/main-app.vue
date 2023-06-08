@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDarkMode } from '@/composable/dark-mode'
 import { useScreenSize } from '@/composable/screen-size'
-import BaseNotification from '@/components/base-notification.vue'
+import { BaseNotification } from '@/components/index'
 
 useDarkMode()
 useScreenSize()

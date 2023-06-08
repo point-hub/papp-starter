@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BasePopper from '@/components/base-popper.vue'
+import { BaseSwitch } from '@/components/index'
+import { BasePopper } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const activeTab = ref('all')

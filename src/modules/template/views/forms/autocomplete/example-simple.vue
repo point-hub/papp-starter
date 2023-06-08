@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseAutocomplete from '@/components/base-autocomplete.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseAutocomplete } from '@/components/index'
 import { codeExample } from './example-simple'
 
 const list = [

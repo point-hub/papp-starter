@@ -1,5 +1,5 @@
 export const codeExample = `<script setup lang="ts">
-import BaseSelect from '@/components/base-select.vue'
+import { BaseSelect } from '@/components/index'
 
 const list = [
   { id: 1, label: 'Durward Reynolds' },

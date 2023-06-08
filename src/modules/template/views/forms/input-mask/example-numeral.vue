@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseInputMask from '@/components/base-input-mask.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseInputMask } from '@/components/index'
 import { codeExample } from './example-credit-card'
 
 const input = ref()

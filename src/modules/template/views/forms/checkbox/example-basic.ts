@@ -1,6 +1,6 @@
 export const codeExample = `<script setup lang="ts">
 import { ref } from 'vue'
-import BaseCheckbox from '@/components/base-checkbox.vue'
+import { BaseCheckbox } from '@/components/index'
 
 const primaryCheckbox = ref(false)
 const secondaryCheckbox = ref(false)

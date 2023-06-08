@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BasePopper from '@/components/base-popper.vue'
+import { BasePopper } from '@/components/index'
 import { ref } from 'vue'
 
 const activeTab = ref('all')

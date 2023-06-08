@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseDatepicker from '@/components/base-datepicker.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseDatepicker } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const date = ref()

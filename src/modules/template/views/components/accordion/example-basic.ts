@@ -1,6 +1,6 @@
 export const codeExample = `<script setup lang="ts">
-import BaseAccordion from '@/components/base-accordion.vue'
-import BaseAccordionItem from '@/components/base-accordion-item.vue'
+import { BaseAccordion } from '@/components/index'
+import { BaseAccordionItem } from '@/components/index'
 </script>
 
 <template>

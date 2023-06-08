@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseModal from '@/components/base-modal.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseModal } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const showModal = ref(false)

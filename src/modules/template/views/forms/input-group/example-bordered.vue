@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseInput from '@/components/base-input.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseInput } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const form = ref({

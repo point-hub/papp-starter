@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseBreadcrumb from '@/components/base-breadcrumb.vue'
-import BaseDivider from '@/components/base-divider.vue'
+import { BaseBreadcrumb } from '@/components/index'
+import { BaseDivider } from '@/components/index'
 import ExampleSolid from './example-solid.vue'
 import ExampleRounded from './example-rounded.vue'
 import ExampleOutline from './example-outline.vue'

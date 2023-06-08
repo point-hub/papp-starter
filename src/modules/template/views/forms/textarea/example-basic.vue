@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseTextarea from '@/components/base-textarea.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseTextarea } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const text = ref('')

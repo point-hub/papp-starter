@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseSelect from '@/components/base-select.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseSelect } from '@/components/index'
 import { codeExample } from './example-bordered'
 
 const list = [

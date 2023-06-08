@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
+import { BaseSwitch } from '@/components/index'
 import BaseModal, { type SizeType } from '@/components/base-modal.vue'
 import { codeExample } from './example-size'
 

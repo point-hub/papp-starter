@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseBreadcrumb from '@/components/base-breadcrumb.vue'
-import BaseDivider from '@/components/base-divider.vue'
+import { BaseBreadcrumb } from '@/components/index'
+import { BaseDivider } from '@/components/index'
 import ExampleCreditCard from './example-credit-card.vue'
 import ExampleNumeral from './example-numeral.vue'
 import ExampleDate from './example-date.vue'

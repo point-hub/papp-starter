@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseBreadcrumb from '@/components/base-breadcrumb.vue'
-import BaseDivider from '@/components/base-divider.vue'
+import { BaseBreadcrumb } from '@/components/index'
+import { BaseDivider } from '@/components/index'
 import ExampleHorizontal from './example-horizontal.vue'
 import ExampleHorizontalWithText from './example-horizontal-with-text.vue'
 import ExampleVertical from './example-vertical.vue'

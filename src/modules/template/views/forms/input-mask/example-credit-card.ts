@@ -1,6 +1,6 @@
 export const codeExample = `<script setup lang="ts">
 import { ref } from 'vue'
-import BaseInputMask from '@/components/base-input-mask.vue'
+import { BaseInputMask } from '@/components/index'
 
 const input = ref()
 </script>

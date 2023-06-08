@@ -1,5 +1,5 @@
 export const codeExample = `<script setup lang="ts">
-import BaseAutocomplete from '@/components/base-autocomplete.vue'
+import { BaseAutocomplete } from '@/components/index'
 
 const list = [
   { id: 1, label: 'Durward Reynolds' },

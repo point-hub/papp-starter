@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseDropdown from '@/components/base-dropdown.vue'
+import { BaseDropdown } from '@/components/index'
 import ComponentNotification from './component-notification.vue'
 import ComponentToggleSidebar from './component-toggle-sidebar.vue'
+import { appName } from '@/config/app'
 
 const htmlTag = document.getElementsByTagName('html')[0]
 const isDarkMode = ref(htmlTag.classList.contains('dark'))
@@ -29,9 +30,7 @@ function toggleDarkMode() {
         <!-- Left: Sidebar Toggle Button -->
         <div class="flex">
           <component :is="ComponentToggleSidebar" class="pr-4" />
-          <h1 class="text-base font-extrabold lg:text-lg">
-            PAPP <span class="font-normal">STARTER</span>
-          </h1>
+          <h1 class="text-base font-extrabold lg:text-lg">{{ appName }}</h1>
         </div>
 
         <!-- Right: Header Buttons -->

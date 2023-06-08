@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseCheckbox from '@/components/base-checkbox.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseCheckbox } from '@/components/index'
 import { codeExample } from './example-label'
 
 const checked = ref(false)

@@ -1,5 +1,5 @@
 <script lang="ts">
-interface Breadcrumb {
+export interface Breadcrumb {
   name: string
   path?: string
 }

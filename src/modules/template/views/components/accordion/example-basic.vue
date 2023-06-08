@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseAccordion from '@/components/base-accordion.vue'
-import BaseAccordionItem from '@/components/base-accordion-item.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseAccordion } from '@/components/index'
+import { BaseAccordionItem } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const codeToggle = ref(false)

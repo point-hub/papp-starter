@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseRadioGroup from '@/components/base-radio-group.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseRadioGroup } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const options = [

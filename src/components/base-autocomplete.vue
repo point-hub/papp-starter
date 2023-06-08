@@ -1,10 +1,10 @@
 <script lang="ts">
-interface OptionsInterface {
+export interface OptionsInterface {
   label: string
   [key: string]: any
 }
 
-interface Props {
+export interface Props {
   modelValue: any
   placeholder?: string
   border?: 'full' | 'simple' | 'none'

@@ -1,6 +1,6 @@
 export const codeExample = `<script setup lang="ts">
 import { ref } from 'vue'
-import BaseDatepicker from '@/components/base-datepicker.vue'
+import { BaseDatepicker } from '@/components/index'
 
 const date = ref()
 </script>

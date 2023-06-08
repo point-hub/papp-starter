@@ -46,6 +46,11 @@ const paddingRight = ref(0)
 onMounted(() => {
   paddingLeft.value = prefixRef.value.clientWidth === 0 ? 10 : prefixRef.value.clientWidth
   paddingRight.value = suffixRef.value.clientWidth === 0 ? 10 : suffixRef.value.clientWidth
+
+  setTimeout(() => {
+    paddingLeft.value = prefixRef.value.clientWidth === 0 ? 10 : prefixRef.value.clientWidth
+    paddingRight.value = suffixRef.value.clientWidth === 0 ? 10 : suffixRef.value.clientWidth
+  }, 1000)
 })
 </script>
 
@@ -78,7 +83,7 @@ onMounted(() => {
           :class="{
             'border-b border-x-none border-t-none': border === 'simple',
             'border ': border === 'full',
-            'border-none p-0!': border === 'none'
+            'border-none': border === 'none'
           }"
           v-model="value"
           :type="props.type"
@@ -113,3 +118,9 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style lang="postcss">
+table input.border-none {
+  @apply p-0!;
+}
+</style>

@@ -1,5 +1,5 @@
 export const codeExample = `<script setup lang="ts">
-import BaseTreeview from '@/components/base-treeview.vue'
+import { BaseTreeview } from '@/components/index'
 </script>
 
 <template>

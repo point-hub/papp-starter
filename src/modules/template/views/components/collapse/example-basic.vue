@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
+import { BaseSwitch } from '@/components/index'
 import BaseAccordion from '@/components/base-accordion.vue'
 import BaseAccordionItem from '@/components/base-accordion-item.vue'
 import { codeExample } from './example-basic'

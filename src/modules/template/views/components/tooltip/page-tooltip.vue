@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseBreadcrumb from '@/components/base-breadcrumb.vue'
-import BaseDivider from '@/components/base-divider.vue'
+import { BaseBreadcrumb } from '@/components/index'
+import { BaseDivider } from '@/components/index'
 import ExampleDirective from './example-directive.vue'
 import ExampleSlot from './example-slot.vue'
 </script>

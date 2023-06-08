@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseSwitch from '@/components/base-switch.vue'
-import BaseDropdown from '@/components/base-dropdown.vue'
+import { BaseSwitch } from '@/components/index'
+import { BaseDropdown } from '@/components/index'
 import { codeExample } from './example-basic'
 
 const codeToggle = ref(false)

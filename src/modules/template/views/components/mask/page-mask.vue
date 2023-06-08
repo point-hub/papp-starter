@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseBreadcrumb from '@/components/base-breadcrumb.vue'
-import BaseDivider from '@/components/base-divider.vue'
+import { BaseBreadcrumb } from '@/components/index'
+import { BaseDivider } from '@/components/index'
 import ExampleSquircle from './example-squircle.vue'
 import ExampleDiamond from './example-diamond.vue'
 import ExampleReuleauxTriangle from './example-reuleaux-triangle.vue'

@@ -1,0 +1,14 @@
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-debug.log
+.git
+
+# build directory
+dist
+coverage
+
+# envorinment variable
+.env
+Docker.env
