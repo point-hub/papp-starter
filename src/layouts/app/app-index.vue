@@ -26,7 +26,7 @@ import AppFooter from './app-footer.vue'
   </div>
 </template>
 
-<style>
+<style lang="postcss">
 .main-container {
   @apply flex flex-col py-4 w-full;
 }

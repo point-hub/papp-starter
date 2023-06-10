@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useSidebarStore } from '@/stores/sidebar'
+
+const sidebarStore = useSidebarStore()
+
+const toggleSidebar = () => {
+  sidebarStore.toggleSidebar()
+}
+</script>
+
 <template>
   <button @click="toggleSidebar()">
     <div v-if="!sidebarStore.isSidebarOpen">
@@ -8,13 +18,3 @@
     </div>
   </button>
 </template>
-
-<script setup lang="ts">
-import { useSidebarStore } from '@/stores/sidebar'
-
-const sidebarStore = useSidebarStore()
-
-const toggleSidebar = () => {
-  sidebarStore.toggleSidebar()
-}
-</script>

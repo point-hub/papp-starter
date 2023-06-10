@@ -84,7 +84,7 @@ function toggleDarkMode() {
   </nav>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 nav.header {
   @apply fixed top-0 flex w-full h-60px z-20 px-4 bg-white dark:bg-slate-900 shadow;
 }

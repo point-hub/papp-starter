@@ -109,7 +109,7 @@ useSidebar()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .sidebar-panel {
   @apply fixed top-0 left-[var(--sidebar-shortcut-width)] h-full w-[var(--sidebar-panel-width)] z-30 -translate-x-[calc(100%+(var(--sidebar-shortcut-width)))] transform-gpu transition-transform duration-200 opacity-100;
 }

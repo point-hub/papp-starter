@@ -20,7 +20,7 @@ const sidebarStore = useSidebarStore()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .is-sidebar-open .sidebar {
   @apply fixed w-full h-full bg-black/50 z-30 lg:bg-black/0 lg:w-0 lg:h-0;
 }

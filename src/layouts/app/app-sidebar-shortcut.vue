@@ -40,7 +40,7 @@ const sidebarStore = useSidebarStore()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
 .sidebar-logo {
   @apply h-10 w-10 transition-transform duration-500 hover:rotate-[360deg];
 }

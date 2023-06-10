@@ -23,6 +23,8 @@ Docker.env
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/unocss.json
 .idea
 *.suo
 *.ntvs*
