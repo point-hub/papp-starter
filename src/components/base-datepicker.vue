@@ -1,5 +1,5 @@
 <script lang="ts">
-interface Props {
+export interface Props {
   modelValue: string
   id?: string
   label?: string

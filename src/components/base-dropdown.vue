@@ -1,11 +1,9 @@
-<script lang="ts">
-interface Props {
-  position?: 'left' | 'right'
-}
-</script>
-
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems } from '@headlessui/vue'
+
+export interface Props {
+  position?: 'left' | 'right'
+}
 
 const props = withDefaults(defineProps<Props>(), {
   position: 'left'

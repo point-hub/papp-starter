@@ -32,7 +32,7 @@ export interface SubmenuInterface {
   separator?: boolean
 }
 
-interface StateInterface {
+export interface StateInterface {
   shortcut: ShortcutInterface[]
   activeShortcut: ShortcutInterface
   activeShortcutIndex: number

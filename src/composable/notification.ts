@@ -7,7 +7,7 @@ export enum TypesEnum {
   Danger = 'danger'
 }
 
-interface OptionInterface {
+export interface OptionInterface {
   type?: TypesEnum
   group?: string
   duration?: number

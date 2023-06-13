@@ -1,16 +1,7 @@
-<template>
-  <component :is="Popper" v-bind="$attrs" :placement="props.placement">
-    <slot />
-    <template #content="contentProps">
-      <slot name="content" v-bind="contentProps" />
-    </template>
-  </component>
-</template>
-
 <script setup lang="ts">
 import Popper from 'vue3-popper'
 
-interface Props {
+export interface Props {
   placement?:
     | 'auto'
     | 'auto-start'
@@ -33,3 +24,12 @@ const props = withDefaults(defineProps<Props>(), {
   placement: 'bottom'
 })
 </script>
+
+<template>
+  <component :is="Popper" v-bind="$attrs" :placement="props.placement">
+    <slot />
+    <template #content="contentProps">
+      <slot name="content" v-bind="contentProps" />
+    </template>
+  </component>
+</template>

@@ -1,4 +1,7 @@
-<script lang="ts">
+<script setup lang="ts">
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
+import { computed } from 'vue'
+
 export interface OptionsInterface {
   label: string
   [key: string]: any
@@ -10,11 +13,6 @@ export interface Props {
   border?: 'full' | 'simple' | 'none'
   list: OptionsInterface[]
 }
-</script>
-
-<script setup lang="ts">
-import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
-import { computed } from 'vue'
 
 const props = withDefaults(defineProps<Props>(), {
   border: 'simple',

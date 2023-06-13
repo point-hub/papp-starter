@@ -1,5 +1,7 @@
-<script lang="ts">
-interface Props {
+<script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
+
+export interface Props {
   modelValue: string
   id?: string
   label?: string
@@ -14,10 +16,6 @@ interface Props {
   helper?: string
   error?: string
 }
-</script>
-
-<script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
 
 const props = withDefaults(defineProps<Props>(), {
   border: 'simple',
