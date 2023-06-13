@@ -19,6 +19,9 @@ export interface Props {
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import { ref, watch, computed } from 'vue'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+dayjs.extend(customParseFormat)
 
 const props = withDefaults(defineProps<Props>(), {
   border: 'simple',
@@ -31,10 +34,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
+  (e: 'isoValue', value: string): void
 }>()
 
 const value = computed({
   set: (text: string) => {
+    emit('isoValue', dayjs(text, 'DD/MM/YYYY').toISOString())
     emit('update:modelValue', text)
   },
   get: () => props.modelValue
@@ -83,7 +88,7 @@ watch(nativeDate, (newValue) => {
     <div class="flex flex-1 flex-col">
       <div class="relative">
         <input ref="dateRef" v-model="nativeDate" type="date" class="form-input absolute -z-50" />
-        <button class="absolute right-0 top-1 px-4 py-2" @click="onClickDateRef()">
+        <button type="button" class="absolute right-0 top-1 px-4 py-2" @click="onClickDateRef()">
           <i class="i-far-calendar block"></i>
         </button>
         <input
