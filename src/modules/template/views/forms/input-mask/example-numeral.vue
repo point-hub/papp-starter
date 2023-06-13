@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { BaseSwitch } from '@/components/index'
 import { BaseInputMask } from '@/components/index'
-import { codeExample } from './example-credit-card'
+import { codeExample } from './example-numeral'
 
 const input = ref()
 const codeToggle = ref(false)
