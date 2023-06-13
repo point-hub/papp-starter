@@ -7,8 +7,8 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier',
-    '@unocss'
+    '@vue/eslint-config-prettier'
+    // '@unocss' // cannot formatting on save when added @unocss when have <i> element on page
   ],
   overrides: [
     {
