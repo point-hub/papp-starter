@@ -54,7 +54,9 @@ const value = computed({
  */
 const dateRef = ref()
 const onClickDateRef = () => {
-  dateRef.value.showPicker()
+  if (!props.readonly) {
+    dateRef.value.showPicker()
+  }
 }
 const nativeDate = ref()
 
