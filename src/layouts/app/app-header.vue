@@ -37,7 +37,7 @@ function toggleDarkMode() {
         <div class="flex items-center space-x-2">
           <component :is="ComponentNotification" />
 
-          <component :is="BaseDropdown">
+          <component :is="BaseDropdown" position="right">
             <template #trigger>
               <div
                 class="relative max-w-75 w-full flex cursor-pointer items-center rounded-lg py-2 pl-3 text-left lg:min-w-50 space-x-2 focus-visible:border-indigo-500 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-orange-300"
