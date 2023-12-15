@@ -1,0 +1,30 @@
+html.dark {
+  @apply [color-scheme:dark];
+}
+
+body {
+  @apply font-sans text-slate-700 antialiased bg-slate-50;
+  @apply dark:bg-slate-900 dark:text-slate-300;
+}
+
+/* headings */
+h1 {
+  @apply text-4xl font-inter;
+}
+
+h2 {
+  @apply text-3xl font-inter;
+}
+
+h3 {
+  @apply text-2xl font-inter;
+}
+
+/* scrollbar */
+.scrollbar-hidden {
+  @apply [scrollbar-width:none]; /* Firefox */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  @apply hidden;
+}
