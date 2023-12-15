@@ -7,10 +7,10 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { PluginInputMask, PluginTooltip, PluginIcon } from '@point-hub/papp'
 
-import App from './app.vue'
+import MainApp from './main-app.vue'
 import router from './router'
 
-const app = createApp(App)
+const app = createApp(MainApp)
 
 app.use(createPinia())
 app.use(router)
