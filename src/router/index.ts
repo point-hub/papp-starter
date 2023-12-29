@@ -5,13 +5,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
       component: () => import('../layouts/base.vue'),
       children: [
         {
           path: '',
-          name: 'home',
           component: () => import('@/pages/home.vue')
+        },
+        {
+          path: 'websocket',
+          component: () => import('@/pages/websocket.vue')
         }
       ]
     }
