@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import websocketConfig from '@/config/websocket'
-import { jsonStringify } from '@point-hub/express-utils'
-import { useWebsocketStore } from '@/stores/websocket'
-import { emitter } from '@/composable/emitter'
+import { emitter, useWebsocketStore } from '@point-hub/papp'
 import { ref } from 'vue'
+
+import websocketConfig from '@/config/websocket'
 
 interface IEventUserOnline {
   event: string
@@ -12,33 +11,31 @@ interface IEventUserOnline {
 }
 
 const messages = ref<IEventUserOnline[]>([])
-emitter.on('user-online', (e) => {
+emitter.on('user-online', (e: any) => {
   messages.value.push(e)
 })
 
 const websocket = useWebsocketStore()
 
 const onSubmit = () => {
-  if (websocket.socket?.readyState) {
-    websocket.socket?.send(
-      jsonStringify({
-        event: 'user-online',
-        user: 'user_id',
-        status: 'online'
-      })
-    )
+  if (websocket.readyState()) {
+    websocket.send({
+      event: 'user-online',
+      user: 'user_id',
+      status: 'online'
+    })
   }
 }
 
 const onOpen = () => {
-  if (websocket.socket && websocket.socket.readyState === websocket.socket.CLOSED) {
+  if (websocket && websocket.isClosed()) {
     websocket.open(websocketConfig.url)
   }
 }
 
 const onClose = () => {
-  if (websocket.socket && websocket.socket.readyState === websocket.socket.OPEN) {
-    websocket.socket.close()
+  if (websocket.socket && websocket.isOpen()) {
+    websocket.close()
   }
 }
 </script>
