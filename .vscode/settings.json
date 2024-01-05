@@ -1,0 +1,10 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "css.customData": [".vscode/unocss.json"],
+  "files.associations": {
+    "*.css": "postcss"
+  }
+}

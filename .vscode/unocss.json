@@ -1,0 +1,25 @@
+{
+  "version": 1.0,
+  "atDirectives": [
+    {
+      "name": "@apply",
+      "description": "Use `@apply` to inline any existing utility classes into your own custom CSS.",
+      "references": [
+        {
+          "name": "UnoCSS Documentation",
+          "url": "https://unocss.dev/transformers/directives#apply"
+        }
+      ]
+    },
+    {
+      "name": "@screen",
+      "description": "The `@screen` directive that allows you to create media queries that reference your breakpoints",
+      "references": [
+        {
+          "name": "UnoCSS Documentation",
+          "url": "https://unocss.dev/transformers/directives#screen"
+        }
+      ]
+    }
+  ]
+}
