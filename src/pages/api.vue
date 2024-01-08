@@ -3,11 +3,12 @@ import { BaseButton, BaseCard } from '@point-hub/papp'
 import { ref } from 'vue'
 
 import axios from '@/axios'
+import apiConfig from '@/config/api'
 
 const examples = ref()
 
 const getRequest = async () => {
-  const response = await axios.get('https://papi.starter.pointhub.net/v1/examples')
+  const response = await axios.get(`${apiConfig.baseURL}/v1/examples`)
 
   examples.value = response.data
 }
