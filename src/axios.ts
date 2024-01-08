@@ -9,14 +9,14 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    if (process.env.NODE_ENV !== 'production') {
+    if (import.meta.env.DEV) {
       console.log('Request: ', config.url)
       console.log('Request: ', config)
     }
     return config
   },
   function (error) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (import.meta.env.DEV) {
       console.log('Response Error: ', error.response)
     }
     return Promise.reject(error.response)
