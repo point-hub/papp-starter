@@ -26,6 +26,10 @@ const router = createRouter({
           component: () => import('@/pages/home.vue')
         },
         {
+          path: 'api',
+          component: () => import('@/pages/api.vue')
+        },
+        {
           path: 'websocket',
           component: () => import('@/pages/websocket.vue')
         },

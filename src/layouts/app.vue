@@ -80,7 +80,7 @@ onMounted(() => {
 }
 
 .main-container {
-  @apply flex flex-col py-4 w-full transition-all duration-300;
+  @apply flex flex-col py-4 space-y-8 w-full transition-all duration-300;
 }
 
 .is-sidebar-open .main-container {

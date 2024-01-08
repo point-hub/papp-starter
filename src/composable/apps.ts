@@ -9,6 +9,10 @@ export const apps: IApps[] = [
         path: '/app1a/home'
       },
       {
+        name: 'API',
+        path: '/app1a/api'
+      },
+      {
         name: 'Websocket',
         path: '/app1a/websocket'
       },
