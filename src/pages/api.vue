@@ -20,7 +20,7 @@ const getRequest = async () => {
     <div class="space-y-4">
       <div class="flex items-center gap-4">
         <component :is="BaseButton" color="primary" size="sm" @click="getRequest">Get</component>
-        <p>https://papi.starter.pointhub.net/v1/examples</p>
+        <p>{{ apiConfig.baseURL }}/v1/examples</p>
       </div>
       <article class="bg-black text-white text-sm rounded-xl p-4">
         <pre><code>{{ examples }}</code></pre>
