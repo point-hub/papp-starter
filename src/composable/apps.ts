@@ -1,6 +1,6 @@
 export const apps: IApps[] = [
   {
-    name: 'ERP',
+    name: 'App 1A',
     path: '/app1a',
     icon: 'https://assets.pointhub.net/assets/images/logo/primary/icon-rounded.png',
     menu: [
@@ -26,7 +26,7 @@ export const apps: IApps[] = [
     ]
   },
   {
-    name: 'HRIS',
+    name: 'App 1B',
     path: '/app1b',
     icon: 'https://assets.pointhub.net/assets/images/logo/primary/icon-rounded.png',
     menu: [
