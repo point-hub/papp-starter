@@ -10,6 +10,14 @@ RUN npm install -g bun
 USER node
 WORKDIR /home/node/app
 
+# environment variable
+ARG VITE_API_BASE_URL
+ENV VITE_API_BASE_URL $VITE_API_BASE_URL
+ARG VITE_API_TIMEOUT
+ENV VITE_API_TIMEOUT $VITE_API_TIMEOUT
+ARG VITE_WEBSOCKET_URL
+ENV VITE_WEBSOCKET_URL $VITE_WEBSOCKET_URL
+
 # install dependencies
 COPY --chown=node:node package.json bun.lockb ./
 RUN bun install --frozen-lockfile
