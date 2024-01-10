@@ -1,29 +1,37 @@
 <script setup lang="ts">
-import { useDarkMode, useScreenSize, useWebsocketStore } from '@point-hub/papp'
-import { onBeforeUnmount, onMounted } from 'vue'
+import { BaseToast, useDarkMode, useScreenSize, useWebsocketStore } from '@point-hub/papp'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 
 import websocketConfig from '@/config/websocket'
+import { useToastStore } from '@/stores/toast-store'
 
 const { loadDarkMode } = useDarkMode()
+const toastStore = useToastStore()
+
+const toastRef = ref()
+toastStore.toastRef = toastRef
 
 useDarkMode()
 useScreenSize()
 
 const { open, close } = useWebsocketStore()
-// handshake to websockets
+
 onMounted(() => {
+  // set default darkmode
   loadDarkMode()
+  // open websocket connection
   open(websocketConfig.url)
 })
-// close websocket when leave application
 onBeforeUnmount(() => {
+  // close websocket connection
   close()
 })
 </script>
 
 <template>
   <RouterView />
+  <component :is="BaseToast" ref="toastRef" />
 </template>
 
 <style scoped></style>
