@@ -4,16 +4,15 @@ on:
   push:
     branches:
       - main
-      - staging
     tags:
       - 'v*.*.*'
   pull_request:
     branches:
       - main
-      - staging
 
 jobs:
   build:
+    environment: production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -55,16 +54,16 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            "VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}"
-            "VITE_API_TIMEOUT=${{ secrets.VITE_API_TIMEOUT }}"
-            "VITE_WEBSOCKET_URL=${{ secrets.VITE_WEBSOCKET_URL }}"
+            "VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}"
+            "VITE_API_TIMEOUT=${{ vars.VITE_API_TIMEOUT }}"
 
   deploy:
+    environment: production
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@main
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
@@ -75,4 +74,4 @@ jobs:
         run: doctl kubernetes cluster kubeconfig save --expiry-seconds 300 ${{ secrets.KUBERNETES_CLUSTER_ID }}
 
       - name: Restart deployment
-        run: kubectl rollout restart deployment/${{ secrets.KUBERNETES_DEPLOYMENT_NAME }}
+        run: kubectl rollout restart deployment/${{ vars.KUBERNETES_DEPLOYMENT_NAME }}

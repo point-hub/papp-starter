@@ -30,10 +30,6 @@ const router = createRouter({
           component: () => import('@/pages/api.vue')
         },
         {
-          path: 'websocket',
-          component: () => import('@/pages/websocket.vue')
-        },
-        {
           path: 'nested/page-1',
           component: () => import('@/pages/nested/page-1.vue')
         },
