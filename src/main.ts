@@ -3,7 +3,7 @@ import './assets/css/main.css'
 import '@point-hub/papp/style.css'
 import 'virtual:uno.css'
 
-import { PluginIcon, PluginInputMask, PluginTooltip } from '@point-hub/papp'
+import { PluginBaseComponents, PluginInputMask, PluginTooltip } from '@point-hub/papp'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
@@ -17,6 +17,6 @@ app.use(createPinia())
 
 app.use(PluginInputMask)
 app.use(PluginTooltip)
-app.use(PluginIcon)
+app.use(PluginBaseComponents)
 
 app.mount('#app')
