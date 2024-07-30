@@ -3,7 +3,7 @@ import { BaseToast, useDarkMode, useScreenSize } from '@point-hub/papp'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterView } from 'vue-router'
 
-import { useToastStore } from '@/stores/toast-store'
+import { useToastStore } from '@/stores/toast.store'
 
 const { loadDarkMode } = useDarkMode()
 const toastStore = useToastStore()
