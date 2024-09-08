@@ -6,5 +6,6 @@
   "css.customData": [".vscode/unocss.json"],
   "files.associations": {
     "*.css": "postcss"
-  }
+  },
+  "cucumber.glue": ["cypress/e2e/**/*.ts"]
 }

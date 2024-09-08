@@ -25,6 +25,8 @@
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^20.1.2",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
     "@point-hub/preset-papp-icon": "^0.0.2",
     "@rushstack/eslint-patch": "^1.10.4",
     "@tsconfig/node18": "^18.2.4",
