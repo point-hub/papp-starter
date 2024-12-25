@@ -1,34 +1,23 @@
 export const apps: IApps[] = [
   {
-    name: 'App 1A',
-    path: '/app1a',
+    name: 'App 1',
+    path: '/',
     icon: 'https://assets.pointhub.net/assets/images/logo/primary/icon-rounded.png',
     menu: [
       {
         name: 'Home',
-        path: '/app1a/home'
+        path: '/home'
       },
       {
         name: 'API',
-        path: '/app1a/api'
+        path: '/api'
       },
       {
         name: 'Nested',
         submenu: [
-          { name: 'Page 1', path: '/app1a/nested/page-1' },
-          { name: 'Page 2', path: '/app1a/nested/page-2' }
-        ]
-      }
-    ]
-  },
-  {
-    name: 'App 1B',
-    path: '/app1b',
-    icon: 'https://assets.pointhub.net/assets/images/logo/primary/icon-rounded.png',
-    menu: [
-      {
-        name: 'Home',
-        path: '/app1b/home',
+          { name: 'Page 1', path: '/nested/page-1' },
+          { name: 'Page 2', path: '/nested/page-2' }
+        ],
         separator: true
       },
       {

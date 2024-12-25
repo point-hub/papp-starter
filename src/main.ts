@@ -1,6 +1,6 @@
 import '@unocss/reset/tailwind-compat.css'
 import './assets/css/main.css'
-import '@point-hub/papp/style.css'
+import '@point-hub/papp/index.css'
 import 'virtual:uno.css'
 
 import { PluginBaseComponents, PluginInputMask, PluginTooltip } from '@point-hub/papp'

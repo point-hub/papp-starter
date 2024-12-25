@@ -9,17 +9,7 @@ const router = createRouter({
       children: [
         {
           path: '',
-          redirect: '/app1a/home'
-        }
-      ]
-    },
-    {
-      path: '/app1a',
-      component: () => import('../layouts/app.vue'),
-      children: [
-        {
-          path: '',
-          redirect: '/app1a/home'
+          redirect: '/home'
         },
         {
           path: 'home',
@@ -36,20 +26,6 @@ const router = createRouter({
         {
           path: 'nested/page-2',
           component: () => import('@/pages/nested/page-2.vue')
-        }
-      ]
-    },
-    {
-      path: '/app1b',
-      component: () => import('../layouts/app.vue'),
-      children: [
-        {
-          path: '',
-          redirect: '/app1b/home'
-        },
-        {
-          path: 'home',
-          component: () => import('@/pages/home.vue')
         }
       ]
     }

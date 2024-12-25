@@ -1,7 +1,10 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Page 1</div>
+  <base-card>
+    <template #header>Page 1</template>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+  </base-card>
 </template>
 
 <style scoped lang="postcss"></style>

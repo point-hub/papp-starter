@@ -1,29 +1,55 @@
 <script setup lang="ts">
-import { BaseToast, useDarkMode, useScreenSize } from '@point-hub/papp'
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useDarkMode, useScreenSize } from '@point-hub/papp'
+import { onMounted, provide, ref } from 'vue'
 import { RouterView } from 'vue-router'
 
-import { useToastStore } from '@/stores/toast.store'
+const { setDarkMode } = useDarkMode()
 
-const { loadDarkMode } = useDarkMode()
-const toastStore = useToastStore()
+export interface IToastRef {
+  toast(
+    message: string,
+    options?: {
+      lists?: string[]
+      color?: 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'danger'
+      autoClose?: boolean
+      timer?: number
+    }
+  ): void
+}
 
-const toastRef = ref()
-toastStore.toastRef = toastRef
+/**
+ * Provide the `toastRef` to be used in another component.
+ *
+ * Example:
+ * import { inject, type Ref } from 'vue'
+ * import type { IToastRef } from '@/main-app.vue'
+ * const toastRef = inject<Ref<IToastRef>>('toastRef')
+ * toastRef?.value.toast('This is an error message', { color: 'danger' })
+ */
+const toastRef = ref<IToastRef>()
+provide('toastRef', toastRef)
 
-useDarkMode()
+/**
+ * Track breakpoint on screen change
+ */
 useScreenSize()
 
+/**
+ * the onMounted lifecycle hook is used to perform actions
+ * when a component has been mounted to the DOM
+ */
 onMounted(() => {
-  // set default darkmode
-  loadDarkMode()
+  /**
+   * Set default darkmode to light
+   */
+  setDarkMode('light')
 })
-onBeforeUnmount(() => {})
 </script>
 
 <template>
   <RouterView />
-  <component :is="BaseToast" ref="toastRef" />
+  <!-- Toast Notification Component -->
+  <base-toast ref="toastRef" />
 </template>
 
 <style scoped></style>
