@@ -1,6 +1,6 @@
 export const apps: IApps[] = [
   {
-    name: 'Main Menu',
+    name: 'Application Name',
     path: '/',
     icon: 'https://assets.pointhub.net/assets/images/logo/primary/icon-rounded.png',
     menu: [
