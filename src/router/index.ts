@@ -28,6 +28,16 @@ const router = createRouter({
           component: () => import('@/pages/nested/page-2.vue')
         }
       ]
+    },
+    {
+      path: '/unauthorized',
+      name: 'unauthorized',
+      component: () => import('@/pages/403.vue')
+    },
+    {
+      path: '/:catchAll(.*)', // This handles all unknown routes
+      name: 'not-found',
+      component: () => import('@/pages/404.vue')
     }
   ]
 })
