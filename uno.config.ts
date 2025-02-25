@@ -9,8 +9,8 @@ export default defineConfig({
     presetWebFonts({
       provider: 'google',
       fonts: {
-        inter: 'Inter',
-        'open-sans': 'Open Sans'
+        inter: 'Inter:100,200,300,400,500,600,700,800,900',
+        'open-sans': 'Open Sans:100,200,300,400,500,600,700,800,900'
       }
     })
   ],
