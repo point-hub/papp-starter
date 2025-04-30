@@ -47,7 +47,7 @@ export const handleError: IHandleError = (error: unknown) => {
   // Generic error outside axios
   if (!(error instanceof AxiosError)) {
     return {
-      message: UNHANDLED_ERROR_MESSAGE + ' 1',
+      message: UNHANDLED_ERROR_MESSAGE,
       lists: UNHANDLED_ERROR_LISTS
     }
   }
@@ -56,7 +56,7 @@ export const handleError: IHandleError = (error: unknown) => {
   // Axios treats it as a network error, and error.response will be undefined.
   if (!error.response) {
     return {
-      message: UNHANDLED_ERROR_MESSAGE + ' 2',
+      message: UNHANDLED_ERROR_MESSAGE,
       lists: UNHANDLED_ERROR_LISTS
     }
   }
@@ -64,7 +64,7 @@ export const handleError: IHandleError = (error: unknown) => {
   // If internal server error or api not found return unhandled error
   if (error.response?.status === 500 || error.response?.status === 404) {
     return {
-      message: UNHANDLED_ERROR_MESSAGE + ' 3',
+      message: UNHANDLED_ERROR_MESSAGE,
       lists: UNHANDLED_ERROR_LISTS
     }
   }
