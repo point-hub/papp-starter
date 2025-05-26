@@ -17,7 +17,7 @@ We are using Pointhub App Components for designin UI & UX https://dev.pointhub.n
 
 ## Installation
 
-We are using [Bun](https://dev.pointhub.net/guide/introduction/bun) as a drop-in replacement for Node.js
+We are using [Bun](https://bun.sh/) as a drop-in replacement for Node.js
 
 ### Install Node.js
 
