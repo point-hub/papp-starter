@@ -3,7 +3,7 @@ import { useDarkMode, useScreenSize } from '@point-hub/papp'
 import { onMounted, provide, ref } from 'vue'
 import { RouterView } from 'vue-router'
 
-const { setDarkMode } = useDarkMode()
+const { loadDarkMode } = useDarkMode()
 
 export interface IToastRef {
   toast(
@@ -40,9 +40,9 @@ useScreenSize()
  */
 onMounted(() => {
   /**
-   * Set default darkmode to light
+   * load dark mode configuration
    */
-  setDarkMode('light')
+  loadDarkMode()
 })
 </script>
 

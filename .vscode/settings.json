@@ -7,5 +7,12 @@
   "files.associations": {
     "*.css": "postcss"
   },
-  "cucumber.glue": ["cypress/e2e/**/*.ts"]
+  // Cypress cucumber file location
+  "cucumber.glue": ["cypress/e2e/**/*.ts"],
+  // Visual Studio Code Intellisense running very slow without this setting
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  }
 }

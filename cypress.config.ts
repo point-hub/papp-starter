@@ -4,6 +4,8 @@ import createBundler from '@bahmutov/cypress-esbuild-preprocessor'
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
+  viewportWidth: 1280,
+  viewportHeight: 720,
   e2e: {
     specPattern: '**/*.feature',
     baseUrl: 'http://localhost:4173',

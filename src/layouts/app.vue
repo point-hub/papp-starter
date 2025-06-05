@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import {
-  AppFooter,
-  AppHeader,
-  AppPreloader,
-  AppSidebar,
+  useDarkMode,
   useMobileBreakpoint,
   useSidebar,
+  useSidebarMenuStore,
   useSidebarStore
 } from '@point-hub/papp'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-
-import { apps } from '@/composable/apps'
 
 import { version } from '../../package.json'
 
@@ -21,44 +17,136 @@ useSidebar()
 
 const mobileBreakpoint = useMobileBreakpoint()
 const sidebarStore = useSidebarStore()
+const sidebarMenuStore = useSidebarMenuStore()
+const { isDarkMode, toggleDarkMode } = useDarkMode()
 
-const choosenAppIndex = ref(0)
-const choosenTitle = ref(apps[choosenAppIndex.value].name)
-const onChooseApp = (path: string) => {
-  for (const [index, app] of apps.entries()) {
-    if (app.path === path) {
-      choosenTitle.value = app.name
-      choosenAppIndex.value = index
-    }
+// Sidebar
+const appMenu = [
+  {
+    name: 'Application Name',
+    path: '/',
+    icon: 'https://assets.pointhub.net/assets/images/logo/primary/icon-rounded.png',
+    menu: [
+      {
+        name: 'Home',
+        path: '/home'
+      },
+      {
+        name: 'API',
+        path: '/api'
+      },
+      {
+        name: 'Nested',
+        submenu: [
+          { name: 'Page 1', path: '/nested/page-1' },
+          { name: 'Page 2', path: '/nested/page-2' }
+        ],
+        separator: true
+      },
+      {
+        name: 'unocss.dev',
+        path: 'https://unocss.dev/'
+      },
+      {
+        name: 'fontawesome.com',
+        path: 'https://fontawesome.com/search'
+      },
+      {
+        name: 'iconify.design',
+        path: 'https://icon-sets.iconify.design'
+      },
+      {
+        name: 'icones',
+        path: 'https://icones.js.org/'
+      },
+      {
+        name: 'undraw.co',
+        path: 'https://undraw.co/illustrations'
+      },
+      {
+        name: 'vuejs.org',
+        path: 'https://vuejs.org/'
+      },
+      {
+        name: 'vitejs.dev',
+        path: 'https://vitejs.dev/'
+      }
+    ]
   }
+]
+const appList = [
+  {
+    name: 'Application Name',
+    path: 'https://www.example.com'
+  }
+]
+sidebarMenuStore.setAppMenu(appMenu, appList)
+
+// Header
+const account = ref({
+  organization: 'Organization',
+  username: 'John Doe',
+  avatar: 'https://placehold.co/150'
+})
+
+const organizations = ref([
+  {
+    name: 'Organization ABC',
+    link: '?organization=abc'
+  }
+])
+
+const onSignout = () => {
+  // Handle signout
 }
 
 onMounted(() => {
-  for (const [index, app] of apps.entries()) {
-    if (route.path.includes(app.path)) {
-      choosenTitle.value = app.name
-      choosenAppIndex.value = index
-    }
-  }
+  sidebarMenuStore.onChooseApp(route.path)
 })
 </script>
 
 <template>
-  <component :is="AppPreloader" />
-
   <div class="app-layout">
     <!-- Header -->
-    <component :is="AppHeader" />
+    <app-header>
+      <template #left-header>
+        <header-sidebar-button
+          :on-toggle-sidebar="sidebarStore.toggleSidebar"
+          v-model:is-sidebar-open="sidebarStore.isSidebarOpen"
+        />
+      </template>
+      <template #right-header>
+        <header-notification></header-notification>
+        <base-divider class="h-10" orientation="horizontal" />
+        <header-menu
+          :organization="account.organization"
+          :username="account.username"
+          :avatar="account.avatar"
+        >
+          <header-menu-account
+            :organization="account.organization"
+            :username="account.username"
+            :avatar="account.avatar"
+          />
+          <base-divider orientation="vertical" />
+          <header-menu-switch-organization :organizations="organizations" />
+          <header-menu-dark-mode
+            :on-toggle-dark-mode="toggleDarkMode"
+            v-model:is-dark-mode="isDarkMode"
+          />
+          <header-menu-signout :on-signout="onSignout" />
+        </header-menu>
+      </template>
+    </app-header>
 
     <!-- Sidebar -->
-    <component
-      :is="AppSidebar"
-      :title="choosenTitle"
-      :apps="apps"
-      :menus="apps[choosenAppIndex].menu ?? []"
+    <app-sidebar
+      :title="sidebarMenuStore.choosenAppTitle"
+      :apps="sidebarMenuStore.appMenu"
+      :menus="sidebarMenuStore.appMenu[sidebarMenuStore.choosenAppIndex].menu ?? []"
       :is-sidebar-open="sidebarStore.isSidebarOpen"
       :is-mobile="mobileBreakpoint.isMobile()"
-      @choose="onChooseApp"
+      @choose="sidebarMenuStore.onChooseApp"
     />
 
     <!-- Main Container -->
@@ -69,7 +157,7 @@ onMounted(() => {
       </main>
 
       <!-- Footer -->
-      <component :is="AppFooter" :version="version" />
+      <app-footer :version="version" :year="2025" />
     </div>
   </div>
 </template>

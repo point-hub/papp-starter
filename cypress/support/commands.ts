@@ -36,4 +36,6 @@
 //   }
 // }
 
+import 'cypress-file-upload'
+
 export {}
