@@ -1,5 +1,4 @@
 import pluginVitest from '@vitest/eslint-plugin'
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 import vueTsEslintConfig from '@vue/eslint-config-typescript'
 import pluginCypress from 'eslint-plugin-cypress/flat'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
@@ -28,7 +27,7 @@ export default [
     ...pluginCypress.configs.recommended,
     files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}']
   },
-  skipFormatting,
+
   {
     plugins: {
       'simple-import-sort': simpleImportSort
@@ -40,7 +39,12 @@ export default [
   },
   {
     rules: {
-      'vue/multi-word-component-names': 'off'
+      'vue/multi-word-component-names': 'off',
+      'max-len': 'off',
+      'comma-dangle': ['error', 'never'],
+      'quotes': ['error', 'single', { 'avoidEscape': true }],
+      'semi': ['error', 'never'],
+      'indent': ['error', 2]
     }
   }
 ]

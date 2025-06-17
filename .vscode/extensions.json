@@ -1,9 +1,3 @@
 {
-  "recommendations": [
-    "vue.volar",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "antfu.unocss",
-    "cucumberopen.cucumber-official"
-  ]
+  "recommendations": ["vue.volar", "dbaeumer.vscode-eslint", "antfu.unocss", "cucumberopen.cucumber-official"]
 }

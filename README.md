@@ -9,7 +9,6 @@ This template should help get you started developing with Vue 3 in Vite.
 - [Cucumber](https://cucumber.io/) for BDD testing
 - [Cypress](https://www.cypress.io/) for testing framework
 - [ESLint](https://eslint.org) for code linting
-- [Prettier](https://prettier.io) for code formatting
 
 ## UI Components
 
