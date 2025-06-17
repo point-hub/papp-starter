@@ -1,34 +1,22 @@
 import pluginVitest from '@vitest/eslint-plugin'
-import vueTsEslintConfig from '@vue/eslint-config-typescript'
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginCypress from 'eslint-plugin-cypress/flat'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import pluginVue from 'eslint-plugin-vue'
 
-export default [
+export default defineConfigWithVueTs([
   {
     name: 'app/files-to-lint',
     files: ['**/*.{ts,mts,tsx,vue}']
   },
-
   {
     name: 'app/files-to-ignore',
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**']
   },
-
-  ...pluginVue.configs['flat/essential'],
-  ...vueTsEslintConfig(),
-
+  pluginVue.configs['flat/essential'],
+  vueTsConfigs.recommended,
   {
-    ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*']
-  },
-
-  {
-    ...pluginCypress.configs.recommended,
-    files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}']
-  },
-
-  {
+    files: ['**/*.{ts,tsx,js,jsx,vue}'],
     plugins: {
       'simple-import-sort': simpleImportSort
     },
@@ -36,6 +24,14 @@ export default [
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error'
     }
+  },
+  {
+    ...pluginVitest.configs.recommended,
+    files: ['src/**/__tests__/*']
+  },
+  {
+    ...pluginCypress.configs.recommended,
+    files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}']
   },
   {
     rules: {
@@ -47,4 +43,4 @@ export default [
       'indent': ['error', 2]
     }
   }
-]
+])
