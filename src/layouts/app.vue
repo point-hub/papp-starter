@@ -1,27 +1,35 @@
 <script setup lang="ts">
 import {
+  type IAppMenu,
   useDarkMode,
   useMobileBreakpoint,
   useSidebar,
   useSidebarMenuStore,
-  useSidebarStore
-} from '@point-hub/papp'
-import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+  useSidebarStore,
+} from '@point-hub/papp';
+import { onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
-import { version } from '../../package.json'
+import AppHeaderNotifications from '@/components/app-header-notifications.vue';
+import { useAblyChannel } from '@/composables/ably-channel';
+import { useAuthStore } from '@/stores/auth.store';
 
-const route = useRoute()
+import { version } from '../../package.json';
 
-useSidebar()
+const route = useRoute();
+const router = useRouter();
 
-const mobileBreakpoint = useMobileBreakpoint()
-const sidebarStore = useSidebarStore()
-const sidebarMenuStore = useSidebarMenuStore()
-const { isDarkMode, toggleDarkMode } = useDarkMode()
+useSidebar();
+
+const mobileBreakpoint = useMobileBreakpoint();
+const sidebarStore = useSidebarStore();
+const sidebarMenuStore = useSidebarMenuStore();
+const { isDarkMode, toggleDarkMode } = useDarkMode();
+const authStore = useAuthStore();
+const { subscribe } = useAblyChannel(`notifications:${authStore.authUser?._id}`);
 
 // Sidebar
-const appMenu = [
+const appMenu = ref<IAppMenu[]>([
   {
     name: 'Application Name',
     path: '/',
@@ -29,80 +37,87 @@ const appMenu = [
     menu: [
       {
         name: 'Home',
-        path: '/home'
+        path: '/home',
       },
       {
-        name: 'API',
-        path: '/api'
-      },
-      {
-        name: 'Nested',
+        name: 'Master',
         submenu: [
-          { name: 'Page 1', path: '/nested/page-1' },
-          { name: 'Page 2', path: '/nested/page-2' }
+          { name: 'Users', path: '/master/users' },
+          { name: 'Roles', path: '/master/roles' },
+          { name: 'Examples', path: '/master/examples' },
         ],
-        separator: true
+      },
+      {
+        name: 'Administrator',
+        submenu: [
+          { name: 'Audit Logs', path: '/administrator/audit-logs' },
+        ],
+        separator: true,
       },
       {
         name: 'unocss.dev',
-        path: 'https://unocss.dev/'
+        path: 'https://unocss.dev/',
       },
       {
         name: 'fontawesome.com',
-        path: 'https://fontawesome.com/search'
+        path: 'https://fontawesome.com/search',
       },
       {
         name: 'iconify.design',
-        path: 'https://icon-sets.iconify.design'
+        path: 'https://icon-sets.iconify.design',
       },
       {
         name: 'icones',
-        path: 'https://icones.js.org/'
+        path: 'https://icones.js.org/',
       },
       {
         name: 'undraw.co',
-        path: 'https://undraw.co/illustrations'
+        path: 'https://undraw.co/illustrations',
       },
       {
         name: 'vuejs.org',
-        path: 'https://vuejs.org/'
+        path: 'https://vuejs.org/',
       },
       {
         name: 'vitejs.dev',
-        path: 'https://vitejs.dev/'
-      }
-    ]
-  }
-]
-const appList = [
+        path: 'https://vitejs.dev/',
+      },
+    ],
+  },
+]);
+
+const appList = ref<IAppMenu[]>([
   {
     name: 'Application Name',
-    path: 'https://www.example.com'
-  }
-]
-sidebarMenuStore.setAppMenu(appMenu, appList)
+    path: 'https://www.example.com',
+  },
+]);
+sidebarMenuStore.setAppMenu(appMenu.value, appList.value);
 
 // Header
 const account = ref({
-  organization: 'Organization',
-  username: 'John Doe',
-  avatar: 'https://placehold.co/150'
-})
+  organization: 'Acme Corp',
+  username: authStore.authUser?.username,
+  avatar: 'https://placehold.co/150',
+});
 
 const organizations = ref([
   {
-    name: 'Organization ABC',
-    link: '?organization=abc'
-  }
-])
+    name: 'Acme Corp',
+    link: '?org=abc',
+  },
+]);
 
-const onSignout = () => {
-  // Handle signout
-}
+const onSignout = async () => {
+  await authStore.signout();
+  await router.push('/signin');
+};
 
 onMounted(() => {
-  sidebarMenuStore.onChooseApp(route.path)
-})
+  subscribe();
+  sidebarMenuStore.onChooseApp(route.path);
+
+});
 </script>
 
 <template>
@@ -116,24 +131,13 @@ onMounted(() => {
         />
       </template>
       <template #right-header>
-        <header-notification></header-notification>
+        <app-header-notifications />
         <base-divider class="h-10" orientation="horizontal" />
-        <header-menu
-          :organization="account.organization"
-          :username="account.username"
-          :avatar="account.avatar"
-        >
-          <header-menu-account
-            :organization="account.organization"
-            :username="account.username"
-            :avatar="account.avatar"
-          />
-          <base-divider orientation="vertical" />
+        <header-menu :organization="account.organization" :username="account.username" :avatar="account.avatar">
+          <header-menu-account :organization="account.organization" :username="account.username" :avatar="account.avatar" />
+          <base-divider orientation="vertical" class="my-2!" />
           <header-menu-switch-organization :organizations="organizations" />
-          <header-menu-dark-mode
-            :on-toggle-dark-mode="toggleDarkMode"
-            v-model:is-dark-mode="isDarkMode"
-          />
+          <header-menu-dark-mode :on-toggle-dark-mode="toggleDarkMode" v-model:is-dark-mode="isDarkMode" />
           <header-menu-signout :on-signout="onSignout" />
         </header-menu>
       </template>
@@ -143,7 +147,7 @@ onMounted(() => {
     <app-sidebar
       :title="sidebarMenuStore.choosenAppTitle"
       :apps="sidebarMenuStore.appMenu"
-      :menus="sidebarMenuStore.appMenu[sidebarMenuStore.choosenAppIndex].menu ?? []"
+      :menus="sidebarMenuStore.appMenu[sidebarMenuStore.choosenAppIndex]?.menu ?? []"
       :is-sidebar-open="sidebarStore.isSidebarOpen"
       :is-mobile="mobileBreakpoint.isMobile()"
       @choose="sidebarMenuStore.onChooseApp"
@@ -153,7 +157,7 @@ onMounted(() => {
     <div class="main-container">
       <!-- Main Content -->
       <main class="main-content">
-        <router-view></router-view>
+        <router-view />
       </main>
 
       <!-- Footer -->

@@ -10,7 +10,7 @@
           </div>
 
           <div>
-            <h1>Forbidden Access</h1>
+            <h1 class="text-3xl">Forbidden Access</h1>
             <p>You don't have necessary permissions for this resource.</p>
           </div>
 

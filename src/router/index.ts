@@ -1,45 +1,90 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+
+import authConfig from '@/config/auth';
+import routesAdministrator from '@/pages/administrator/routes';
+import routesAuth from '@/pages/auth/routes';
+import routesMaster from '@/pages/master/routes';
+import { useAuthStore } from '@/stores/auth.store';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      component: () => import('../layouts/app.vue'),
       children: [
         {
           path: '',
-          redirect: '/home'
+          redirect: '/home',
         },
         {
-          path: 'home',
-          component: () => import('@/pages/home.vue')
+          path: '',
+          component: () => import('@/layouts/app.vue'),
+          children: [
+            {
+              path: 'home',
+              component: () => import('@/pages/home.vue'),
+              meta: { requiresAuth: true },
+            },
+            routesMaster,
+            routesAdministrator,
+          ],
         },
         {
-          path: 'api',
-          component: () => import('@/pages/api.vue')
+          path: '',
+          component: () => import('@/layouts/auth.vue'),
+          children: [routesAuth],
         },
         {
-          path: 'nested/page-1',
-          component: () => import('@/pages/nested/page-1.vue')
+          // redirect signin to Pointhub SSO
+          path: '/sso-signin',
+          component: () => import('@/pages/empty.vue'),
+          beforeEnter() {
+            const queryParams = {
+              client_id: authConfig.client_id,
+              response_type: 'code',
+              state: crypto.randomUUID(),
+              redirect_uri: authConfig.redirect_uri,
+            };
+            const queryString = new URLSearchParams(queryParams).toString();
+            window.location.href = `${authConfig.url}?${queryString}`;
+          },
         },
         {
-          path: 'nested/page-2',
-          component: () => import('@/pages/nested/page-2.vue')
-        }
-      ]
+          path: '/403',
+          component: () => import('@/pages/403.vue'),
+        },
+        {
+          path: '/:pathMatch(.*)*',
+          component: () => import('@/pages/404.vue'),
+        },
+      ],
     },
-    {
-      path: '/unauthorized',
-      name: 'unauthorized',
-      component: () => import('@/pages/403.vue')
-    },
-    {
-      path: '/:catchAll(.*)', // This handles all unknown routes
-      name: 'not-found',
-      component: () => import('@/pages/404.vue')
-    }
-  ]
-})
+  ],
+  scrollBehavior() {
+    // always scroll to top after navigation
+    return { top: 0 };
+  },
+});
 
-export default router
+router.beforeEach(async (to, from, next) => {
+  const authStore = useAuthStore();
+
+  // try to reauthenticate if not authenticated
+  if (!authStore.isAuthenticated && to.path !== '/signin') {
+    await authStore.reauthenticate().catch(() => {});
+  }
+
+  // check if user has permission to access route
+  if (to.meta.permission && !authStore.hasPermission(to.meta.permission.toString())) {
+    return next('/403');
+  }
+
+  // redirect to signin page if not authenticated
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    return next(`/signin?redirect=${encodeURIComponent(to.fullPath)}`);
+  }
+
+  next();
+});
+
+export default router;

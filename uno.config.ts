@@ -1,18 +1,22 @@
-import presetPappIcon from '@point-hub/preset-papp-icon'
-import TransformerDirectives from '@unocss/transformer-directives'
-import { defineConfig, presetUno, presetWebFonts } from 'unocss'
+import { presetPappIcon } from '@point-hub/preset-papp-icon';
+import presetWind4 from '@unocss/preset-wind4';
+import TransformerDirectives from '@unocss/transformer-directives';
+import { defineConfig, presetWebFonts } from 'unocss';
 
 export default defineConfig({
   presets: [
-    presetUno({ mode: 'vue-scoped' }),
+    presetWind4({
+      preflights: { reset: true },
+      mode: 'vue-scoped',
+    }),
     presetPappIcon(),
     presetWebFonts({
-      provider: 'google',
+      provider: 'none',
       fonts: {
-        inter: 'Inter:100,200,300,400,500,600,700,800,900',
-        'open-sans': 'Open Sans:100,200,300,400,500,600,700,800,900'
-      }
-    })
+        inter: 'Inter',
+        'open-sans': 'Open Sans',
+      },
+    }),
   ],
   transformers: [TransformerDirectives()],
   theme: {
@@ -22,7 +26,7 @@ export default defineConfig({
       info: '#3399ff',
       success: '#2eb85c',
       warning: '#f9b115',
-      danger: '#e55353'
-    }
-  }
-})
+      danger: '#e55353',
+    },
+  },
+});

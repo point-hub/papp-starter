@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
 # stage 1 - builder
 # ---------------------------------------------------------------------------
-FROM node:20 as builder
+FROM node:22-slim as builder
 
 # install bun
 RUN npm install -g bun
@@ -17,7 +17,7 @@ ARG VITE_API_TIMEOUT
 ENV VITE_API_TIMEOUT $VITE_API_TIMEOUT
 
 # install dependencies
-COPY --chown=node:node package.json bun.lockb ./
+COPY --chown=node:node package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # copy source code
@@ -29,7 +29,7 @@ RUN bun run build
 # ---------------------------------------------------------------------------
 # stage 2 - runner
 # ---------------------------------------------------------------------------
-FROM nginx:1.25.3-alpine as runner
+FROM nginx:1.29.1-alpine as runner
 
 # copy nginx configuration server block file
 COPY .nginx/default.conf /etc/nginx/conf.d/default.conf

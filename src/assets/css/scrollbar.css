@@ -1,0 +1,69 @@
+/* Scrollbar Styles */
+/* 1. Global WebKit Scrollbar (Chrome, Safari, Edge) */
+
+/* Hide the scrollbar entirely by default */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  transition: all 0.3s ease;
+}
+
+/* 2. Show the scrollbar when the mouse hovers over a scrollable element */
+/* This targets elements that *have* overflow (scrollable content) */
+div:hover::-webkit-scrollbar,
+aside:hover::-webkit-scrollbar,
+section:hover::-webkit-scrollbar,
+body:hover::-webkit-scrollbar,
+/* Add more relevant tags as needed (e.g., textarea, pre, ul) */
+:hover::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+/* 3. Style the visible track and thumb globally */
+/* This applies to the scrollbar when it *is* visible (on hover) */
+::-webkit-scrollbar-track {
+  background: transparent; /* Keep track clean */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Thumb color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* 4. Global Firefox Scrollbar */
+
+/* Set a consistent slim width for Firefox globally */
+* {
+  scrollbar-width: thin;
+  /* Make the thumb and track transparent by default */
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+
+/* Show the scrollbar color on hover (for Firefox) */
+div:hover,
+aside:hover,
+section:hover,
+body:hover,
+:hover {
+  scrollbar-color: #888 transparent; /* thumb color track color */
+}
+
+.scrollbar-hidden {
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* Webkit-based browsers (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Internet Explorer/Edge */
+  -ms-overflow-style: none;
+}

@@ -1,10 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, ref } from 'vue';
+
+import AppMenu, { type IMenu } from '@/components/app-menu.vue';
+
+const breadcrumbs = [
+  {
+    name: 'Home',
+    path: '/',
+  },
+];
+
+
+const menus = ref<IMenu[]>([]);
+
+onMounted(() => {
+  menus.value.push({ name: 'Master', path: '/master', icon: 'i-fa7-solid:address-card' });
+  menus.value.push({ name: 'Administrator', path: '/administrator', icon: 'i-fa7-solid:folder-gear' });
+});
+</script>
 
 <template>
-  <base-card>
-    <template #header>Home</template>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-  </base-card>
+  <app-menu :breadcrumbs="breadcrumbs" v-model:menus="menus" />
 </template>
-
-<style scoped lang="postcss"></style>
