@@ -1,18 +1,16 @@
-name: build-and-deploy
+name: deploy-staging
 
 on:
   push:
     branches:
-      - main
-    tags:
-      - 'v*.*.*'
+      - staging
   pull_request:
     branches:
-      - main
+      - staging
 
 jobs:
   build:
-    environment: production
+    environment: staging
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,10 +50,13 @@ jobs:
             "VITE_API_TIMEOUT=${{ vars.VITE_API_TIMEOUT }}"
 
   deploy:
-    environment: production
+    environment: staging
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
