@@ -59,19 +59,24 @@ onMounted(async () => {
   await getAuditLogs(1);
 });
 
-const getAllChangeKeys = (before?: Record<string, unknown>, after?: Record<string, unknown>) => {
-  return Array.from(
+const getChangedKeys = (
+  changes?: { summary?: { fields?: string[] } },
+  before?: Record<string, unknown>,
+  after?: Record<string, unknown>,
+) => {
+  if (changes?.summary?.fields) {
+    return changes.summary.fields;
+  }
+
+  // fallback to previous logic
+  const allKeys = Array.from(
     new Set([
       ...Object.keys(before || {}),
       ...Object.keys(after || {}),
     ]),
   );
-};
 
-const getChangedKeys = (before?: Record<string, unknown>, after?: Record<string, unknown>) => {
-  return getAllChangeKeys(before, after).filter(
-    key => before?.[key] !== after?.[key],
-  );
+  return allKeys.filter(key => before?.[key] !== after?.[key]);
 };
 </script>
 
@@ -197,7 +202,7 @@ const getChangedKeys = (before?: Record<string, unknown>, after?: Record<string,
 
                 <!-- Render rows of auditLog data when available -->
                 <template v-if="!isLoading">
-                  <tr v-for="key in getChangedKeys(auditLog.changes?.snapshot?.before, auditLog.changes?.snapshot?.after)" :key="key">
+                  <tr v-for="key in getChangedKeys(auditLog.changes, auditLog.changes?.snapshot?.before, auditLog.changes?.snapshot?.after)" :key="key">
                     <td class="font-semibold">{{ key }}</td>
                     <td class="break-all text-red-700 dark:text-red-300">{{ auditLog.changes?.snapshot?.before?.[key] }}</td>
                     <td class="break-all text-green-700 dark:text-green-300">{{ auditLog.changes?.snapshot?.after?.[key] }}</td>
