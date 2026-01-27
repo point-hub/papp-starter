@@ -18,6 +18,10 @@ export default {
       component: () => import('@/pages/auth/verify-email/index.vue'),
     },
     {
+      path: 'verify-new-email',
+      component: () => import('@/pages/auth/verify-new-email/index.vue'),
+    },
+    {
       path: 'forgot-password',
       component: () => import('@/pages/auth/forgot-password/index.vue'),
     },

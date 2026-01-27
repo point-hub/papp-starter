@@ -9,8 +9,8 @@ import { toast } from '@/toast';
 import { handleError } from '@/utils/api';
 
 import CardBreadcrumbs from './card-breadcrumbs.vue';
-import CardEmail from './card-email.vue';
 import CardForm from './card-form.vue';
+import CardInternalNotes from './card-internal-notes.vue';
 import CardReason from './card-reason.vue';
 import CardRole from './card-role.vue';
 import { useForm } from './form';
@@ -27,12 +27,9 @@ onMounted(async () => {
   try {
     isLoading.value = true;
     const response = await findUserApi(route.params.id as string);
-    form.data.username = response.username;
     form.data.name = response.name;
-    form.data.email = response.email;
-    form.data.notes = response.notes;
-    form.data.is_archived = response.is_archived;
     form.data.role_id = response.role._id;
+    form.data.notes = response.notes;
 
     selectedRole.value = {
       label: `[${response.role.code}] ${response.role.name}`,
@@ -60,10 +57,8 @@ const onSave = async () => {
   } catch (error) {
     const errorResponse = handleError(error);
     if (errorResponse.errors) {
-      form.errors.username = errorResponse.errors.username || [];
       form.errors.name = errorResponse.errors.name || [];
       form.errors.notes = errorResponse.errors.notes || [];
-      form.errors.email = errorResponse.errors.email || [];
       form.errors.role_id = errorResponse.errors.role_id || [];
       form.errors.update_reason = errorResponse.errors.update_reason || [];
     }
@@ -83,8 +78,8 @@ const onSave = async () => {
   <app-container :is-loading="isLoading">
     <card-breadcrumbs />
     <card-form v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
-    <card-email v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <card-role v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
+    <card-internal-notes v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <card-reason v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <div class="flex gap-2">
       <base-button class="flex-1" :is-loading="isSaving" color="primary" @click="onSave">Save</base-button>

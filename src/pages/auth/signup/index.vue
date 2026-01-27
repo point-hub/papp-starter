@@ -92,9 +92,16 @@ const onSubmit = async () => {
         <base-input required label="Email" layout="vertical" v-model="form.data.value.email"
           :errors="form.errors.value.email" @change="onEmailChange" />
 
-        <base-input required label="Password" layout="vertical" :type="password.type.value"
-          v-model="form.data.value.password" :errors="form.errors.value.password" @keyup="form.validatePassword()"
-          :reset-errors-on-update="false">
+        <base-input
+          required
+          label="Password"
+          layout="vertical"
+          :type="password.type.value"
+          v-model="form.data.value.password"
+          :errors="form.errors.value.password"
+          @keyup="form.validatePassword()"
+          :reset-errors-on-update="false"
+        >
           <template #suffix>
             <base-button @click="password.toggle" variant="text">
               <base-icon icon="i-fa7-regular:eye" />
@@ -102,9 +109,16 @@ const onSubmit = async () => {
           </template>
         </base-input>
 
-        <base-input required label="Confirm Password" layout="vertical" :type="password.type.value"
-          v-model="form.data.value.confirm_password" :errors="form.errors.value.confirm_password"
-          @keyup="form.validateConfirmationPassword()" :reset-errors-on-update="false">
+        <base-input
+          required
+          label="Confirm Password"
+          layout="vertical"
+          :type="password.type.value"
+          v-model="form.data.value.confirm_password"
+          :errors="form.errors.value.confirm_password"
+          @keyup="form.validateConfirmationPassword()"
+          :reset-errors-on-update="false"
+        >
           <template #suffix>
             <base-button @click="password.toggle" variant="text">
               <base-icon icon="i-fa7-regular:eye" />

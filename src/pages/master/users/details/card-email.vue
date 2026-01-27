@@ -13,7 +13,6 @@ const data = defineModel<IForm>('data', {
     <div class="flex flex-col">
       <base-input
         label="Email Address"
-        required
         v-model="data.email"
         :disabled="true"
         description="Please enter a valid email address, as you need to confirm it to receive emails."

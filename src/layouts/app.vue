@@ -26,7 +26,9 @@ const sidebarStore = useSidebarStore();
 const sidebarMenuStore = useSidebarMenuStore();
 const { isDarkMode, toggleDarkMode } = useDarkMode();
 const authStore = useAuthStore();
+
 const { subscribe } = useAblyChannel(`notifications:${authStore.authUser?._id}`);
+const isHeaderMenuOpen = ref(false);
 
 // Sidebar
 const appMenu = ref<IAppMenu[]>([
@@ -133,9 +135,10 @@ onMounted(() => {
       <template #right-header>
         <app-header-notifications />
         <base-divider class="h-10" orientation="horizontal" />
-        <header-menu :organization="account.organization" :username="account.username" :avatar="account.avatar">
+        <header-menu v-model:is-open="isHeaderMenuOpen" :organization="account.organization" :username="account.username" :avatar="account.avatar">
           <header-menu-account :organization="account.organization" :username="account.username" :avatar="account.avatar" />
           <base-divider orientation="vertical" class="my-2!" />
+          <header-menu-link label="My Account" icon="i-ph:user-circle-gear-duotone" path="/account" @click="() => isHeaderMenuOpen = false" />
           <header-menu-switch-organization :organizations="organizations" />
           <header-menu-dark-mode :on-toggle-dark-mode="toggleDarkMode" v-model:is-dark-mode="isDarkMode" />
           <header-menu-signout :on-signout="onSignout" />

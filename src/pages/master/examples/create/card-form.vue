@@ -15,7 +15,6 @@ const data = defineModel<IForm>('data', {
     age: undefined,
     gender: undefined,
     optional_unique: undefined,
-    notes: undefined,
   }),
 });
 const errors = defineModel<IFormError>('errors', {
@@ -27,7 +26,6 @@ const errors = defineModel<IFormError>('errors', {
     age: [],
     gender: [],
     optional_unique: [],
-    notes: [],
   }),
 });
 const isSaving = defineModel('is-saving', { default: false });
@@ -50,7 +48,6 @@ onMounted(async () => {
       <base-input-number layout="horizontal" label="Age" align="left" v-model="data.age" :errors="errors.age" :disabled="isSaving" />
       <base-select layout="horizontal" label="Gender" placeholder="Select" required v-model:selected-value="data.gender" :options="genderOptions" :errors="errors.gender" :disabled="isSaving" />
       <base-input layout="horizontal" label="Optional Unique" v-model="data.optional_unique" :errors="errors.optional_unique" :disabled="isSaving" />
-      <base-textarea layout="horizontal" label="Notes" :min-height="128" v-model="data.notes" :errors="errors.notes" :disabled="isSaving" />
     </div>
   </base-card>
 </template>

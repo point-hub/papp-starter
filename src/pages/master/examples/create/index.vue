@@ -8,6 +8,7 @@ import { handleError } from '@/utils/api';
 
 import CardBreadcrumbs from './card-breadcrumbs.vue';
 import CardForm from './card-form.vue';
+import CardInternalNotes from './card-internal-notes.vue';
 import { useForm } from './form';
 
 const form = useForm();
@@ -50,6 +51,7 @@ const save = async () => {
   <div class="content-container">
     <card-breadcrumbs />
     <card-form v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
+    <card-internal-notes v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <div class="flex gap-2">
       <base-button class="flex-1" :is-loading="isSaving" color="primary" @click="save">Save</base-button>
     </div>

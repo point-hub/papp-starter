@@ -16,7 +16,6 @@ const data = defineModel<IForm>('data', {
     <div class="flex flex-col gap-2">
       <base-input
         label="Role"
-        required
         :model-value="`[${data.role.code}] ${data.role.name}`"
         :disabled="true"
         placeholder="Select"

@@ -16,8 +16,6 @@ import { getEntityLink } from '@/utils/router-resolver';
 
 /**
  * Setup table columns and visibility state using the useTableSetting composable.
- * - name: visible and not selectable
- * - age and gender: visible and selectable
  */
 const {
   isOpen,
@@ -47,8 +45,6 @@ const {
 
 /**
  * Setup filtering, sorting, and pagination state using the useTableFilter composable.
- * - initial filters for all, name, age, gender are empty
- * - initial sort keys all set to 0 (no sort)
  */
 const {
   filter,

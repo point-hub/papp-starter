@@ -47,6 +47,12 @@ const onSubmit = async () => {
     return;
   }
 
+  // optional to require reason
+  if (props.requireReason && form.data.reason === '') {
+    form.errors.reason = ['Reason is required.'];
+    return;
+  }
+
   try {
     // start loading state
     isLoading.value = true;
@@ -72,6 +78,7 @@ const onSubmit = async () => {
     }
     if (errorResponse.errors) {
       form.errors.password = errorResponse.errors.password || [];
+      form.errors.reason = errorResponse.errors.reason || [];
     }
     if (errorResponse.message) {
       toast(errorResponse.message, {
@@ -100,17 +107,18 @@ defineExpose({
           <base-input
             v-if="requirePassword"
             autofocus
+            required
             type="password"
             layout="v"
             label="Password"
             v-model="form.data.password"
-            required
             :errors="form.errors.password"
             :helpers="['Please enter your password to make sure this isn’t done by accident.']"
             border="full"
           />
           <base-textarea
             v-if="requireReason"
+            required
             :autofocus="!requirePassword"
             layout="v"
             label="Reason"

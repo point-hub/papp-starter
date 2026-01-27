@@ -13,8 +13,6 @@ import { timeAgo } from '@/utils/time-ago';
 
 /**
  * Setup table columns and visibility state using the useTableSetting composable.
- * - name: visible and not selectable
- * - age and gender: visible and selectable
  */
 const {
   isOpen,

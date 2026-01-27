@@ -12,12 +12,9 @@ import { toast } from '@/toast';
 import { handleError } from '@/utils/api';
 
 import ModalDelete from '../components/delete-modal/index.vue';
-import { genderOptions } from '../gender';
 
 /**
  * Setup table columns and visibility state using the useTableSetting composable.
- * - name: visible and not selectable
- * - age and gender: visible and selectable
  */
 const {
   isOpen,
@@ -34,6 +31,7 @@ const {
     code: { label: 'Code', isVisible: true, isSelectable: false },
     name: { label: 'Name', isVisible: true, isSelectable: false },
     notes: { label: 'Notes', isVisible: false, isSelectable: true },
+    is_archived: { label: 'Is Archived', isVisible: true, isSelectable: true },
   },
 });
 
@@ -56,11 +54,13 @@ const {
     code: '',
     name: '',
     notes: '',
+    is_archived: 'false',
   },
   initialSortKeys: {
     code: 0,
     name: 0,
     notes: 0,
+    is_archived: 0,
   },
 });
 
@@ -250,6 +250,8 @@ watch(sort, async () => {
     await resetPageAndFetch();
   }
 });
+
+const archivedOptions = ref([{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]);
 </script>
 
 <template>
@@ -304,23 +306,18 @@ watch(sort, async () => {
             <th v-if="columns['name']?.isVisible">
               <base-input v-model="filter.name" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
             </th>
-            <th v-if="columns['composite_unique_1']?.isVisible">
-              <base-input v-model="filter.composite_unique_1" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
-            </th>
-            <th v-if="columns['composite_unique_2']?.isVisible">
-              <base-input v-model="filter.composite_unique_2" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
-            </th>
-            <th v-if="columns['age']?.isVisible">
-              <base-input v-model="filter.age" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
-            </th>
-            <th v-if="columns['gender']?.isVisible">
-              <base-choosen title="Gender" v-model="filter.gender" :options="genderOptions" :readonly="isLoading" placeholder="Search" border="none" paddingless />
-            </th>
-            <th v-if="columns['optional_unique']?.isVisible">
-              <base-input v-model="filter.optional_unique" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
-            </th>
             <th v-if="columns['notes']?.isVisible">
               <base-input v-model="filter.notes" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
+            </th>
+            <th v-if="columns['is_archived']?.isVisible">
+              <base-choosen
+                placeholder="Search..."
+                title="Is Archived"
+                v-model:options="archivedOptions"
+                v-model:selectedValue="filter.is_archived"
+                border="none"
+                paddingless
+              />
             </th>
           </tr>
         </thead>
@@ -391,6 +388,14 @@ watch(sort, async () => {
                 <router-link :to="`/master/roles/${role._id}`" class="text-blue">{{ role.name }}</router-link>
               </td>
               <td v-if="columns['notes']?.isVisible">{{ role.notes }}</td>
+              <td v-if="columns['is_archived']?.isVisible">
+                <base-badge v-if="role.is_archived" variant="filled" color="danger" class="font-bold">
+                  <base-icon icon="i-fa7-solid:box-archive" /> ARCHIVED
+                </base-badge>
+                <base-badge v-else variant="filled" color="success" class="font-bold">
+                  <base-icon icon="i-fa7-solid:box-check" /> ACTIVE
+                </base-badge>
+              </td>
             </tr>
           </template>
         </tbody>

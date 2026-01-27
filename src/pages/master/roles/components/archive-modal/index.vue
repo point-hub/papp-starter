@@ -57,7 +57,6 @@ defineExpose({
   <base-confirm-action-modal
     ref="confirmActionModalRef"
     title="Archive Role"
-    require-password
     require-reason
     @success="onArchive"
   >

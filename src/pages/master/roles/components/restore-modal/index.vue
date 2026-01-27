@@ -57,7 +57,6 @@ defineExpose({
   <base-confirm-action-modal
     ref="confirmActionModalRef"
     title="Restore Role"
-    require-password
     require-reason
     @success="onRestore"
   >

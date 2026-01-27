@@ -10,7 +10,6 @@ const data = defineModel<IForm>('data', {
     age: undefined,
     gender: undefined,
     optional_unique: undefined,
-    notes: undefined,
   }),
 });
 </script>
@@ -25,7 +24,6 @@ const data = defineModel<IForm>('data', {
       <base-input-number layout="horizontal" label="Age" readonly v-model="data.age" align="left" border="full" />
       <base-input layout="horizontal" label="Gender" readonly v-model="data.gender" border="full" />
       <base-input layout="horizontal" label="Optional Unique" readonly v-model="data.optional_unique" border="full" />
-      <base-textarea layout="horizontal" label="Notes" readonly :min-height="128" v-model="data.notes" border="full" />
     </div>
   </base-card>
 </template>

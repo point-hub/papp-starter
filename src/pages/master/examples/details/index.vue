@@ -11,6 +11,7 @@ import StatusBanner from '../../../../components/status-banner.vue';
 import CardActions from '../components/card-actions.vue';
 import CardBreadcrumbs from './card-breadcrumbs.vue';
 import CardForm from './card-form.vue';
+import CardInternalNotes from './card-internal-notes.vue';
 import { useForm } from './form';
 
 const route = useRoute();
@@ -69,6 +70,7 @@ const onRestored = async () => {
     </base-card>
     <template v-else>
       <card-form v-model:data="form.data" />
+      <card-internal-notes v-model:data="form.data" />
     </template>
   </app-container>
 </template>

@@ -35,8 +35,7 @@ instance.defaults.headers.common['Cache-Control'] = 'no-cache';
 // ----------------------------------------------------
 instance.interceptors.request.use((config) => {
   if (import.meta.env.DEV) {
-    // console.log('Request URL:', config.url);
-    // console.log('Request Config:', config);
+    console.log('Request:', config.url, config);
   }
   const userAgent = new UAParser().getResult();
   config.headers = config.headers ?? {};

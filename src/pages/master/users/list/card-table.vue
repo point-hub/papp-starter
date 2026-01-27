@@ -15,8 +15,6 @@ import ModalDelete from '../components/delete-modal/index.vue';
 
 /**
  * Setup table columns and visibility state using the useTableSetting composable.
- * - name: visible and not selectable
- * - age and gender: visible and selectable
  */
 const {
   isOpen,
@@ -36,6 +34,7 @@ const {
     'role.code': { label: 'Role (Code)', isVisible: true, isSelectable: true },
     'role.name': { label: 'Role (Name)', isVisible: true, isSelectable: true },
     notes: { label: 'Notes', isVisible: false, isSelectable: true },
+    is_archived: { label: 'Is Archived', isVisible: false, isSelectable: true },
   },
 });
 
@@ -61,6 +60,7 @@ const {
     'role.code': '',
     'role.name': '',
     notes: '',
+    is_archived: 'false',
   },
   initialSortKeys: {
     username: 0,
@@ -69,6 +69,7 @@ const {
     'role.code': 0,
     'role.name': 0,
     notes: 0,
+    is_archived: 0,
   },
 });
 
@@ -258,6 +259,8 @@ watch(sort, async () => {
     await resetPageAndFetch();
   }
 });
+
+const archivedOptions = ref([{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]);
 </script>
 
 <template>
@@ -323,6 +326,16 @@ watch(sort, async () => {
             </th>
             <th v-if="columns['notes']?.isVisible">
               <base-input v-model="filter.notes" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
+            </th>
+            <th v-if="columns['is_archived']?.isVisible">
+              <base-choosen
+                placeholder="Search..."
+                title="Is Archived"
+                v-model:options="archivedOptions"
+                v-model:selectedValue="filter.is_archived"
+                border="none"
+                paddingless
+              />
             </th>
           </tr>
         </thead>
@@ -406,6 +419,14 @@ watch(sort, async () => {
                 </router-link>
               </td>
               <td v-if="columns['notes']?.isVisible">{{ user.notes }}</td>
+              <td v-if="columns['is_archived']?.isVisible">
+                <base-badge v-if="user.is_archived" variant="filled" color="danger" class="font-bold">
+                  <base-icon icon="i-fa7-solid:box-archive" /> ARCHIVED
+                </base-badge>
+                <base-badge v-else variant="filled" color="success" class="font-bold">
+                  <base-icon icon="i-fa7-solid:box-check" /> ACTIVE
+                </base-badge>
+              </td>
             </tr>
           </template>
         </tbody>

@@ -10,6 +10,7 @@ import { handleError } from '@/utils/api';
 import CardBreadcrumbs from './card-breadcrumbs.vue';
 import CardEmail from './card-email.vue';
 import CardForm from './card-form.vue';
+import CardInternalNotes from './card-internal-notes.vue';
 import CardPassword from './card-password.vue';
 import CardRole from './card-role.vue';
 import { useForm } from './form';
@@ -55,6 +56,7 @@ const onSave = async () => {
     <card-email v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <card-role v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <card-password v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
+    <card-internal-notes v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <div class="flex gap-2">
       <base-button class="flex-1" :is-loading="isSaving" color="primary" @click="onSave">Save</base-button>
     </div>
