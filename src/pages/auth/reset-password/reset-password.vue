@@ -3,11 +3,11 @@ import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { resetPasswordApi } from '@/composables/api/master/auth/reset-password.api.ts';
+import { usePassword } from '@/composables/password.ts';
 import { toast } from '@/toast.ts';
 import { handleError } from '@/utils/api.ts';
 
 import { useForm } from './form.ts';
-import { usePassword } from './password.ts';
 
 const route = useRoute();
 const router = useRouter();
@@ -22,7 +22,8 @@ const onSubmit = async () => {
     if ((form.errors.value.password?.length ?? 0) > 0) {
       return toast('Please use strong password', { color: 'danger' });
     }
-    if (form.data.value.password !== form.data.value.confirm_password) {
+
+    if (!form.isPasswordConfirmed.value) {
       form.errors.value.confirm_password = ['Password do not match'];
       return toast('Password confirmation not match', { color: 'danger' });
     }

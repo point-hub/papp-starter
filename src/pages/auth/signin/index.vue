@@ -2,12 +2,12 @@
 import { reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import { usePassword } from '@/composables/password';
 import { useAuthStore } from '@/stores/auth.store';
 import { toast } from '@/toast';
 import { handleError } from '@/utils/api';
 
 import { useForm } from './form';
-import { usePassword } from './password';
 
 const form = useForm();
 const password = reactive(usePassword());

@@ -6,6 +6,7 @@ import { getAuditLogsApi, type IGetAuditLogsApiResponse } from '@/composables/ap
 import { toast } from '@/toast';
 import { handleError } from '@/utils/api';
 import { formatDate } from '@/utils/date';
+import { getEntityLink } from '@/utils/router-resolver';
 
 /**
  * Utilities for updating query parameters in the URL.
@@ -113,11 +114,7 @@ const getChangedKeys = (
             </tr>
             <tr>
               <td class="font-bold whitespace-nowrap">Actor Type</td>
-              <td>
-                <a :href="`/master/users/${auditLogs?.data[0]?.actor_id}`" target="_blank" class="text-blue-600">
-                  {{ auditLogs?.data[0]?.actor_type }}
-                </a>
-              </td>
+              <td>{{ auditLogs?.data[0]?.actor_type }}</td>
             </tr>
             <tr>
               <td class="font-bold whitespace-nowrap">Actor ID</td>
@@ -137,12 +134,7 @@ const getChangedKeys = (
             </tr>
             <tr>
               <td class="font-bold whitespace-nowrap">Module</td>
-              <td>
-                <a v-if="auditLogs?.data[0]?.module === 'example'" href="/master/examples" target="_blank" class="text-blue-600">
-                  {{ auditLogs?.data[0]?.module }}
-                </a>
-                <span v-else>{{ auditLogs?.data[0]?.module }}</span>
-              </td>
+              <td>{{ auditLogs?.data[0]?.module }}</td>
             </tr>
             <tr>
               <td class="font-bold whitespace-nowrap">User Reason</td>
@@ -167,7 +159,7 @@ const getChangedKeys = (
               <p class="text-sm font-bold">
                 Entity ID:
                 <span class="font-normal">
-                  <a :href="`/master/examples/${auditLog.entity_id}`" class="text-blue-600">
+                  <a :href="getEntityLink({ entity_type: auditLog.entity_type, entity_id: auditLog.entity_id })" class="text-blue-600">
                     {{ auditLog.entity_id }}
                   </a>
                 </span>
@@ -175,7 +167,7 @@ const getChangedKeys = (
               <p class="text-sm font-bold">
                 Entity:
                 <span class="font-normal">
-                  <a :href="`/master/examples/${auditLog.entity_id}`" class="text-blue-600">
+                  <a :href="getEntityLink({ entity_type: auditLog.entity_type, entity_id: auditLog.entity_id })" class="text-blue-600">
                     {{ auditLog.entity_ref }}
                   </a>
                 </span>

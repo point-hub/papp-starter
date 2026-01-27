@@ -21,6 +21,15 @@ const isSaving = ref(false);
 
 const onSave = async () => {
   try {
+    if ((form.errors.password?.length ?? 0) > 0) {
+      return toast('Please use a strong password', { color: 'danger' });
+    }
+
+    if (!form.isPasswordConfirmed.value) {
+      form.errors.confirm_password = ['Password do not match'];
+      return toast('Password confirmation does not match', { color: 'danger' });
+    }
+
     isSaving.value = true;
     const response = await createUserApi(form.data);
     if (response?.inserted_id) {
@@ -55,7 +64,13 @@ const onSave = async () => {
     <card-form v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <card-email v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <card-role v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
-    <card-password v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
+    <card-password
+      v-model:data="form.data"
+      v-model:errors="form.errors"
+      v-model:is-saving="isSaving"
+      :validate-new-password="form.validatePassword"
+      :validate-confirmation-password="form.validateConfirmationPassword"
+    />
     <card-internal-notes v-model:data="form.data" v-model:errors="form.errors" v-model:is-saving="isSaving" />
     <div class="flex gap-2">
       <base-button class="flex-1" :is-loading="isSaving" color="primary" @click="onSave">Save</base-button>

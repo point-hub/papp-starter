@@ -3,11 +3,11 @@ import { ref } from 'vue';
 
 import { isEmailExistsApi } from '@/composables/api/master/auth/is-email-exists.api';
 import { signupApi } from '@/composables/api/master/auth/signup.api';
+import { usePassword } from '@/composables/password';
 import { toast } from '@/toast';
 import { handleError } from '@/utils/api';
 
 import { useForm } from './form';
-import { usePassword } from './password';
 import signupSuccess from './signup-success.vue';
 
 const form = useForm();
@@ -43,7 +43,8 @@ const onSubmit = async () => {
     return toast('Please use a strong password', { color: 'danger' });
   }
 
-  if (!form.isPasswordConfirmed) {
+  if (!form.isPasswordConfirmed.value) {
+    form.errors.value.confirm_password = ['Password do not match'];
     return toast('Password confirmation does not match', { color: 'danger' });
   }
 
@@ -85,12 +86,8 @@ const onSubmit = async () => {
     <form @submit.prevent="onSubmit" class="flex flex-col gap-8">
       <div class="flex flex-col gap-4">
         <base-input label="Name" layout="vertical" v-model="form.data.value.name" :errors="form.errors.value.name" />
-
-        <base-input label="Username" layout="vertical" v-model="form.data.value.username"
-          :errors="form.errors.value.username" />
-
-        <base-input required label="Email" layout="vertical" v-model="form.data.value.email"
-          :errors="form.errors.value.email" @change="onEmailChange" />
+        <base-input label="Username" layout="vertical" v-model="form.data.value.username" :errors="form.errors.value.username" />
+        <base-input required label="Email" layout="vertical" v-model="form.data.value.email" :errors="form.errors.value.email" @change="onEmailChange" />
 
         <base-input
           required

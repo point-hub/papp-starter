@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { usePassword } from '@/composables/password';
+
 import { type IForm, type IFormError } from './form';
-import { usePassword } from './password';
 
 defineProps<{
   validateConfirmationPassword: () => void
@@ -11,14 +12,14 @@ const data = defineModel<IForm>('data', {
   default: () => ({
     current_password: '',
     new_password: '',
-    password_confirmation: '',
+    confirm_password: '',
   }),
 });
 const errors = defineModel<IFormError>('errors', {
   default: () => ({
     current_password: [],
     new_password: [],
-    password_confirmation: [],
+    confirm_password: [],
   }),
 });
 const isSaving = defineModel('is-saving', { default: false });
@@ -30,6 +31,7 @@ const { type, toggle } = usePassword();
     <div class="flex flex-col gap-2">
       <base-input label="Current Password"
         required
+        autofocus
         :disabled="isSaving"
         :type="type"
         v-model="data.current_password"
@@ -62,8 +64,8 @@ const { type, toggle } = usePassword();
         required
         :disabled="isSaving"
         :type="type"
-        v-model="data.password_confirmation"
-        :errors="errors.password_confirmation"
+        v-model="data.confirm_password"
+        :errors="errors.confirm_password"
         @keyup="validateConfirmationPassword()"
         :reset-errors-on-update="false"
       >

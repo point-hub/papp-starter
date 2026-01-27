@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue';
 
-import { usePasswordValidation } from './validation';
+import { usePasswordValidation } from '@/composables/password-validation';
 
 export interface IForm {
   password: string
@@ -35,45 +35,36 @@ export function useForm() {
   };
 
   const isPasswordConfirmed = computed(() => {
+    if (!data.value.password || !data.value.confirm_password) {
+      return false;
+    }
     return (
       data.value.password.length > 0 &&
-      data.value.confirm_password.length > 0 &&
-      errors.value.password.length === 0
+          data.value.confirm_password.length > 0 &&
+          data.value.password && data.value.confirm_password &&
+          errors.value.password.length === 0 &&
+          errors.value.confirm_password.length === 0
     );
   });
 
   const validateConfirmationPassword = () => {
     errors.value.confirm_password = [];
-    if (data.value.confirm_password.length === 0) {
+
+    if (!data.value.confirm_password || data.value.confirm_password.length === 0) {
       return;
     }
-    if (data.value.password !== data.value.confirm_password) {
-      errors.value.confirm_password.push('Password do not match');
-    }
+
+    errors.value.confirm_password = passwordValidation.confirmed(data.value.password ?? '', data.value.confirm_password);
   };
 
   const validatePassword = () => {
-    const errorPassword = [];
     validateConfirmationPassword();
-    if (data.value.password.length === 0) {
+
+    if (!data.value.password || data.value.password.length === 0) {
       return;
     }
-    if (data.value.password.length < 8) {
-      errorPassword.push('Use at least 8 characters');
-    }
-    if (!passwordValidation.containsUppercase(data.value.password)) {
-      errorPassword.push('Contain at least one uppercase letter');
-    }
-    if (!passwordValidation.containsLowercase(data.value.password)) {
-      errorPassword.push('Contain at least one lowercase letter');
-    }
-    if (!passwordValidation.containsNumber(data.value.password)) {
-      errorPassword.push('Contain at least one numeric character');
-    }
-    if (!passwordValidation.containsSpecialChars(data.value.password)) {
-      errorPassword.push('Contain at least one special character');
-    }
-    errors.value.password = errorPassword;
+
+    errors.value.password = passwordValidation.validate(data.value.password);
   };
 
   return {
