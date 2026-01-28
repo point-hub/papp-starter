@@ -77,8 +77,18 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // check if user has permission to access route
-  if (to.meta.permission && !authStore.hasPermission(to.meta.permission.toString())) {
-    return next('/403');
+  if (to.meta.permissions) {
+    const required = Array.isArray(to.meta.permissions)
+      ? to.meta.permissions
+      : [to.meta.permissions];
+
+    const hasAccess = required.every(p =>
+      authStore.hasPermission(p),
+    );
+
+    if (!hasAccess) {
+      return next('/403');
+    }
   }
 
   // redirect to signin page if not authenticated

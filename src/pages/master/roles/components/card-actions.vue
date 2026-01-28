@@ -88,12 +88,12 @@ const onDeleted = async () => {
           <base-icon icon="i-fa7-solid:file-pen" /> EDIT
         </base-button>
       </router-link>
-      <router-link v-if="authStore.hasPermission('roles:read')" :to="`/master/roles/${route.params.id}/histories`">
+      <router-link v-if="authStore.hasPermission('roles:module')" :to="`/master/roles/${route.params.id}/histories`">
         <base-button variant="filled" color="primary" size="sm" class="font-bold">
           <base-icon icon="i-fa7-solid:rectangle-history-circle-user" /> HISTORIES
         </base-button>
       </router-link>
-      <router-link v-if="authStore.hasPermission('audit-logs:read')" :to="`/master/roles/${route.params.id}/audits`">
+      <router-link v-if="authStore.hasPermission('audit-logs:module')" :to="`/master/roles/${route.params.id}/audits`">
         <base-button variant="filled" color="primary" size="sm" class="font-bold">
           <base-icon icon="i-fa7-solid:file-magnifying-glass" /> AUDITS
         </base-button>

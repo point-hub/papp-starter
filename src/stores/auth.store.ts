@@ -59,6 +59,11 @@ export const useAuthStore = defineStore('auth-store', () => {
     return authUser.value?.role?.permissions?.includes(name);
   };
 
+  const hasPermissions = (permissions: string[]) => {
+    const userPermissions = authUser.value?.role?.permissions ?? [];
+    return permissions.every(p => userPermissions.includes(p));
+  };
+
   return {
     authUser,
     signin,
@@ -68,5 +73,6 @@ export const useAuthStore = defineStore('auth-store', () => {
     isAuthenticated,
     hasRole,
     hasPermission,
+    hasPermissions,
   };
 });

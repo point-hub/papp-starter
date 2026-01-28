@@ -41,49 +41,6 @@ const appMenu = ref<IAppMenu[]>([
         name: 'Home',
         path: '/home',
       },
-      {
-        name: 'Master',
-        submenu: [
-          { name: 'Users', path: '/master/users' },
-          { name: 'Roles', path: '/master/roles' },
-          { name: 'Examples', path: '/master/examples' },
-        ],
-      },
-      {
-        name: 'Administrator',
-        submenu: [
-          { name: 'Audit Logs', path: '/administrator/audit-logs' },
-        ],
-        separator: true,
-      },
-      {
-        name: 'unocss.dev',
-        path: 'https://unocss.dev/',
-      },
-      {
-        name: 'fontawesome.com',
-        path: 'https://fontawesome.com/search',
-      },
-      {
-        name: 'iconify.design',
-        path: 'https://icon-sets.iconify.design',
-      },
-      {
-        name: 'icones',
-        path: 'https://icones.js.org/',
-      },
-      {
-        name: 'undraw.co',
-        path: 'https://undraw.co/illustrations',
-      },
-      {
-        name: 'vuejs.org',
-        path: 'https://vuejs.org/',
-      },
-      {
-        name: 'vitejs.dev',
-        path: 'https://vitejs.dev/',
-      },
     ],
   },
 ]);
@@ -119,6 +76,57 @@ onMounted(() => {
   subscribe();
   sidebarMenuStore.onChooseApp(route.path);
 
+  if (authStore.hasPermission('master:module')) {
+    const masterMenu = {
+      name: 'Master',
+      submenu: [] as Array<{ name: string; path: string }>,
+    };
+    if (authStore.hasPermission('users:module')) { masterMenu.submenu?.push({ name: 'Users', path: '/master/users' }); }
+    if (authStore.hasPermission('roles:module')) { masterMenu.submenu?.push({ name: 'Roles', path: '/master/roles' }); }
+    if (authStore.hasPermission('examples:module')) { masterMenu.submenu?.push({ name: 'Examples', path: '/master/examples' }); }
+    appMenu.value[0]?.menu?.push(masterMenu);
+  }
+
+  if (authStore.hasPermission('administrator:module')) {
+    const administratorMenu = {
+      name: 'Administrator',
+      submenu: [] as Array<{ name: string; path: string }>,
+      separator: true,
+    };
+    if (authStore.hasPermission('audit-logs:module')) { administratorMenu.submenu?.push({ name: 'Audit Logs', path: '/administrator/audit-logs' }); }
+    appMenu.value[0]?.menu?.push(administratorMenu);
+  }
+
+  appMenu.value[0]?.menu?.push(
+    {
+      name: 'unocss.dev',
+      path: 'https://unocss.dev/',
+    },
+    {
+      name: 'fontawesome.com',
+      path: 'https://fontawesome.com/search',
+    },
+    {
+      name: 'iconify.design',
+      path: 'https://icon-sets.iconify.design',
+    },
+    {
+      name: 'icones',
+      path: 'https://icones.js.org/',
+    },
+    {
+      name: 'undraw.co',
+      path: 'https://undraw.co/illustrations',
+    },
+    {
+      name: 'vuejs.org',
+      path: 'https://vuejs.org/',
+    },
+    {
+      name: 'vitejs.dev',
+      path: 'https://vitejs.dev/',
+    },
+  );
 });
 </script>
 

@@ -8,6 +8,7 @@ import { getRolesApi, type IRoleData } from '@/composables/api/master/roles/get.
 import { useQueryParams } from '@/composables/query-params';
 import { useTableFilter } from '@/composables/table-filter';
 import { useTableSetting } from '@/composables/table-setting';
+import { useAuthStore } from '@/stores/auth.store';
 import { toast } from '@/toast';
 import { handleError } from '@/utils/api';
 
@@ -31,7 +32,7 @@ const {
     code: { label: 'Code', isVisible: true, isSelectable: false },
     name: { label: 'Name', isVisible: true, isSelectable: false },
     notes: { label: 'Notes', isVisible: false, isSelectable: true },
-    is_archived: { label: 'Is Archived', isVisible: true, isSelectable: true },
+    is_archived: { label: 'Is Archived', isVisible: false, isSelectable: true },
   },
 });
 
@@ -70,6 +71,7 @@ const {
 const { updateQueryParams, applyQueryParams } = useQueryParams();
 const route = useRoute();
 const router = useRouter();
+const authStore = useAuthStore();
 
 /**
  * Reactive references for:
@@ -80,6 +82,7 @@ const router = useRouter();
 const roles = ref<IRoleData[]>();
 const isInitialSetup = ref(true);
 const isLoading = ref(false);
+const archivedOptions = ref([{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]);
 
 /**
  * References for dynamic UI components like row menus and delete modal.
@@ -250,8 +253,6 @@ watch(sort, async () => {
     await resetPageAndFetch();
   }
 });
-
-const archivedOptions = ref([{ label: 'Yes', value: 'true' }, { label: 'No', value: 'false' }]);
 </script>
 
 <template>
@@ -265,7 +266,7 @@ const archivedOptions = ref([{ label: 'Yes', value: 'true' }, { label: 'No', val
         </base-input>
       </div>
       <div class="flex gap-1">
-        <router-link to="/master/roles/create">
+        <router-link v-if="authStore.hasPermission('roles:create')" to="/master/roles/create">
           <base-button color="primary" shape="sharp" class="font-bold">
             <base-icon class="i-lucide:square-plus" /> CREATE
           </base-button>
@@ -363,14 +364,14 @@ const archivedOptions = ref([{ label: 'Yes', value: 'true' }, { label: 'No', val
                           </base-button>
                         </router-link>
                         <base-divider orientation="vertical" class="my-0!" />
-                        <router-link :to="`/master/roles/${role._id}/edit`">
+                        <router-link v-if="authStore.hasPermission('roles:update')" :to="`/master/roles/${role._id}/edit`">
                           <base-button variant="text" color="info" class="w-full py-1! px-3! m-0! flex gap-2! items-center justify-start text-left!">
                             <base-icon icon="i-fa7-light-file-pen" />
                             <p class="flex-1">Edit</p>
                           </base-button>
                         </router-link>
                         <base-divider orientation="vertical" class="my-0!" />
-                        <base-button @click="onDeleteModal(role, index)" variant="text" color="danger" class="w-full py-1! px-3! m-0! flex gap-2! items-center justify-start text-left!">
+                        <base-button v-if="authStore.hasPermission('roles:delete')" @click="onDeleteModal(role, index)" variant="text" color="danger" class="w-full py-1! px-3! m-0! flex gap-2! items-center justify-start text-left!">
                           <base-icon icon="i-fa7-light-trash-xmark" />
                           <p class="flex-1">Delete</p>
                         </base-button>

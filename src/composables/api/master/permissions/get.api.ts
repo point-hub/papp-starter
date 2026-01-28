@@ -32,7 +32,7 @@ export const getPermissionsApi = async (query?: IQuery): Promise<IResponse> => {
       search: query?.search,
       page: query?.page || 1,
       page_size: query?.page_size || 100000,
-      sort: query?.sort || '-_id',
+      sort: query?.sort || '_id',
     },
     signal: controller.signal,
   });
