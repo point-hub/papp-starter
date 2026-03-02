@@ -68,7 +68,7 @@ const router = createRouter({
   },
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from) => {
   const authStore = useAuthStore();
 
   // try to reauthenticate if not authenticated
@@ -87,16 +87,14 @@ router.beforeEach(async (to, from, next) => {
     );
 
     if (!hasAccess) {
-      return next('/403');
+      return '/403';
     }
   }
 
   // redirect to signin page if not authenticated
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    return next(`/signin?redirect=${encodeURIComponent(to.fullPath)}`);
+    return `/signin?redirect=${encodeURIComponent(to.fullPath)}`;
   }
-
-  next();
 });
 
 export default router;
