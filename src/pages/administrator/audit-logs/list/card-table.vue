@@ -375,15 +375,9 @@ watch(sort, async () => {
               </td>
               <td v-if="columns['actor_type']?.isVisible">{{ auditLog.actor_type }}</td>
               <td v-if="columns['actor_id']?.isVisible">
-                <a target="_blank" :href="`/master/users/${auditLog.actor_id}`" class="text-blue-600">
                   {{ auditLog.actor_id }}
-                </a>
               </td>
-              <td v-if="columns['actor_name']?.isVisible">
-                <a target="_blank" :href="`/master/users/${auditLog.actor_id}`" class="text-blue-600">
-                  {{ auditLog.actor_name }}
-                </a>
-              </td>
+              <td v-if="columns['actor_name']?.isVisible">{{ auditLog.actor_name }}</td>
               <td v-if="columns['action']?.isVisible">{{ auditLog.action }}</td>
               <td v-if="columns['module']?.isVisible">{{ auditLog.module }}</td>
               <td v-if="columns['entity_type']?.isVisible">{{ auditLog.entity_type }}</td>

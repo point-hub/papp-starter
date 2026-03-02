@@ -7,7 +7,7 @@
       "dependencies": {
         "@ably/chat": "^1.2.0",
         "@point-hub/js-utils": "^0.0.6",
-        "@point-hub/papp": "^0.3.1",
+        "@point-hub/papp": "^0.3.2",
         "@point-hub/vue-cookie": "^0.2.2",
         "ably": "^2.18.0",
         "axios": "^1.13.6",
@@ -284,7 +284,7 @@
 
     "@point-hub/js-utils": ["@point-hub/js-utils@0.0.6", "", {}, "sha512-lJsRjnyQm6poiqAWRzpP6aEJbazBcsk6nmVN0HNVWh/SWpw55Bi3dHJ1Gf9LA7nGw2oskDz+1Al99ECJYxCmUg=="],
 
-    "@point-hub/papp": ["@point-hub/papp@0.3.1", "", { "dependencies": { "@headlessui/vue": "^1.7.23", "@point-hub/js-utils": "^0.0.6", "@point-hub/preset-papp-icon": "^0.0.12", "@tsconfig/node22": "^22.0.5", "@unocss/vite": "^66.6.3", "@vueuse/components": "^14.2.1", "@vueuse/core": "^14.2.1", "cleave.js": "^1.6.0", "date-fns": "^4.1.0", "pinia": "^3.0.4", "textarea-caret": "^3.1.0", "uuid": "^13.0.0", "vue-tippy": "^6.7.1", "vue3-popper": "^1.5.0" }, "peerDependencies": { "vue": "^3.5.14", "vue-router": "5" } }, "sha512-y/36m3UWxS0807KvLpK2EIJKRSlAsjbDnDM/SFqpsyMkq2JolxTltR6gF82Gm4M6plJIYrIX5Ic8Pj4VCWBSEQ=="],
+    "@point-hub/papp": ["@point-hub/papp@0.3.2", "", { "dependencies": { "@headlessui/vue": "^1.7.23", "@point-hub/js-utils": "^0.0.6", "@point-hub/preset-papp-icon": "^0.0.12", "@tsconfig/node22": "^22.0.5", "@unocss/vite": "^66.6.3", "@vueuse/components": "^14.2.1", "@vueuse/core": "^14.2.1", "cleave.js": "^1.6.0", "date-fns": "^4.1.0", "pinia": "^3.0.4", "textarea-caret": "^3.1.0", "uuid": "^13.0.0", "vue-tippy": "^6.7.1", "vue3-popper": "^1.5.0" }, "peerDependencies": { "vue": "^3.5.14", "vue-router": "5" } }, "sha512-83BeTv8xpGwD0S2qTvJs9qPR9KFMArtlnJaq1gU6js64zGh/D+dQbB9cmdBO1xoF0xw51QZZu2hmaWJNVO2AHg=="],
 
     "@point-hub/preset-papp-icon": ["@point-hub/preset-papp-icon@0.0.12", "", { "dependencies": { "ofetch": "^1.4.1" }, "peerDependencies": { "typescript": "5.8.3", "unocss": "^66.3.3" } }, "sha512-NoKx4+PVmA6qhEn8hXBFTxKpi0pFdSiflO/aFLh2rGpEZl0nV1ccjEvx3+EZGE2VxuUkBvr15eFZmbj+Lg9XBw=="],
 
