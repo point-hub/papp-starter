@@ -38,21 +38,22 @@ const onSubmit = async () => {
 
 <template>
   <base-card class="max-w-xl" v-if="isRequestPasswordSuccess === false">
-    <form @submit.prevent="onSubmit" class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8">
       <div class="flex flex-col gap-4">
         <base-input
+          layout="vertical"
+          label="Email"
           v-model="form.data.value.email"
           :errors="form.errors.value.email"
           :disabled="isLoading"
-          label="Email"
-          layout="vertical"
+          @keyup.enter="onSubmit"
           autofocus
         />
       </div>
-      <base-button type="submit" color="primary" :is-loading="isLoading">
+      <base-button @click="onSubmit" type="submit" color="primary" :is-loading="isLoading">
         Request Reset Password
       </base-button>
-    </form>
+    </div>
     <div class="mt-4">Remember Password ? <router-link to="/signin" class="text-blue-600">Sign In</router-link></div>
   </base-card>
   <request-password-success :email="form.data.value.email" v-else />

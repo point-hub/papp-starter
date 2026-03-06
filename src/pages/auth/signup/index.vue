@@ -83,10 +83,10 @@ const onSubmit = async () => {
 
 <template>
   <base-card v-if="!isSignupSuccess" class="max-w-xl">
-    <form @submit.prevent="onSubmit" class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8">
       <div class="flex flex-col gap-4">
         <base-input label="Name" layout="vertical" v-model="form.data.value.name" :errors="form.errors.value.name" />
-        <base-input label="Username" layout="vertical" v-model="form.data.value.username" :errors="form.errors.value.username" />
+        <base-input required label="Username" layout="vertical" v-model="form.data.value.username" :errors="form.errors.value.username" />
         <base-input required label="Email" layout="vertical" v-model="form.data.value.email" :errors="form.errors.value.email" @change="onEmailChange" />
 
         <base-input
@@ -134,8 +134,8 @@ const onSubmit = async () => {
         </div>
       </div>
 
-      <base-button type="submit" color="primary">Sign Up</base-button>
-    </form>
+      <base-button @click="onSubmit" type="submit" color="primary">Sign Up</base-button>
+    </div>
   </base-card>
 
   <signup-success v-else :email="signupEmail" />

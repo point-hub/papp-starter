@@ -45,15 +45,31 @@ const onSubmit = async () => {
 
 <template>
   <base-card class="max-w-xl p-8!" shadow>
-    <form @submit.prevent="onSubmit" class="flex flex-col gap-8 relative">
+    <div class="flex flex-col gap-8 relative">
       <div class="flex flex-col gap-4">
         <h1 class="font-semibold text-2xl">Sign in</h1>
 
         <div class="flex flex-col gap-4">
-          <base-input autofocus :disabled="isLoading" v-model="form.data.value.username"
-            :errors="form.errors.value.username" label="Username / Email" border="simple" layout="vertical" />
-          <base-input :disabled="isLoading" :type="password.type" v-model="form.data.value.password"
-            :errors="form.errors.value.password" label="Password" border="simple" layout="vertical">
+          <base-input
+            layout="vertical"
+            label="Username / Email"
+            autofocus
+            :disabled="isLoading"
+            v-model="form.data.value.username"
+            :errors="form.errors.value.username"
+            @keyup.enter="onSubmit"
+            border="simple"
+          />
+          <base-input
+            layout="vertical"
+            label="Password"
+            :disabled="isLoading"
+            :type="password.type"
+            v-model="form.data.value.password"
+            :errors="form.errors.value.password"
+            @keyup.enter="onSubmit"
+            border="simple"
+          >
             <template #suffix>
               <BaseButton @click="password.toggle" variant="text" color="secondary">
                 <BaseIcon icon="i-fa7-regular:eye" />
@@ -65,13 +81,13 @@ const onSubmit = async () => {
             <router-link class="text-blue-600" to="/forgot-password">Forgot Password</router-link>
           </div>
           <div>
-            <base-button size="lg" type="submit" is-block :is-loading="isLoading" color="primary">
+            <base-button @click="onSubmit" size="lg" type="submit" is-block :is-loading="isLoading" color="primary">
               Sign In
             </base-button>
           </div>
         </div>
       </div>
-    </form>
+    </div>
   </base-card>
 </template>
 

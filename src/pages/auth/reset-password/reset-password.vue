@@ -59,7 +59,7 @@ const onSubmit = async () => {
 
 <template>
   <base-card title="Reset Password" class="max-w-xl">
-    <form @submit.prevent="onSubmit" class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8">
       <div class="flex flex-col gap-4">
         <base-input label="New Password" layout="vertical"
           required
@@ -68,6 +68,7 @@ const onSubmit = async () => {
           v-model="form.data.value.password"
           :errors="form.errors?.value.password"
           @keyup="form.validatePassword()"
+          @keyup.enter="onSubmit"
           :reset-errors-on-update="false"
         >
           <template #suffix>
@@ -83,6 +84,7 @@ const onSubmit = async () => {
           v-model="form.data.value.confirm_password"
           :errors="form.errors?.value.confirm_password"
           @keyup="form.validateConfirmationPassword()"
+          @keyup.enter="onSubmit"
           :reset-errors-on-update="false"
         >
           <template #suffix>
@@ -92,8 +94,8 @@ const onSubmit = async () => {
           </template>
         </base-input>
       </div>
-      <base-button :is-loading="isLoading" color="primary" @click="onSubmit">Reset Password</base-button>
-    </form>
+      <base-button @click="onSubmit" :is-loading="isLoading" color="primary">Reset Password</base-button>
+    </div>
     <div class="mt-4">Remember your password? <router-link to="/signin" class="text-blue-600">Sign In</router-link></div>
   </base-card>
 </template>

@@ -41,7 +41,7 @@ const onSubmit = async () => {
 
 <template>
   <base-card class="max-w-xl" v-if="!isVerifySuccess">
-    <form @submit.prevent="onSubmit" class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8">
       <div class="flex flex-col gap-4">
         <base-input v-model="form.data.value.code"
           :errors="form.errors.value.code"
@@ -50,8 +50,8 @@ const onSubmit = async () => {
           autofocus
         />
       </div>
-      <base-button type="submit" color="primary">Verify Email</base-button>
-    </form>
+      <base-button @click="onSubmit" type="submit" color="primary">Verify Email</base-button>
+    </div>
   </base-card>
   <verify-success v-else />
 </template>
