@@ -27,7 +27,6 @@ const save = async () => {
   } catch (error) {
     const errorResponse = handleError(error);
     if (errorResponse.errors) {
-      form.errors.code = errorResponse.errors.code || [];
       form.errors.name = errorResponse.errors.name || [];
       form.errors.notes = errorResponse.errors.notes || [];
       form.errors.permissions = errorResponse.errors.permissions || [];

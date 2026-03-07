@@ -27,7 +27,6 @@ onMounted(async () => {
     isLoading.value = true;
     const response = await findRoleApi(route.params.id as string);
     if (response) {
-      form.data.code = response.code;
       form.data.name = response.name;
       form.data.notes = response.notes;
       form.data.permissions = response.permissions;
@@ -56,7 +55,6 @@ const update = async () => {
   } catch (error) {
     const errorResponse = handleError(error);
     if (errorResponse.errors) {
-      form.errors.code = errorResponse.errors.code || [];
       form.errors.name = errorResponse.errors.name || [];
       form.errors.notes = errorResponse.errors.notes || [];
       form.errors.permissions = errorResponse.errors.permissions || [];

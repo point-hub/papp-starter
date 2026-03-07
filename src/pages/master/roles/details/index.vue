@@ -26,7 +26,6 @@ onMounted(async () => {
     const response = await findRoleApi(route.params.id as string);
     if (response) {
       form.data._id = response._id;
-      form.data.code = response.code;
       form.data.name = response.name;
       form.data.notes = response.notes;
       form.data.is_archived = response.is_archived;

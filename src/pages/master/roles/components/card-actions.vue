@@ -25,7 +25,7 @@ const role = defineModel<IForm>('data');
 const onArchiveModal = () => {
   archiveModalRef.value.toggleModal({
     _id: role.value?._id,
-    label: `[${role.value?.code}] ${role.value?.name}`,
+    label: role.value?.name,
   });
 };
 
@@ -42,7 +42,7 @@ const onArchived = async () => {
 const onRestoreModal = () => {
   restoreModalRef.value.toggleModal({
     _id: role.value?._id,
-    label: `[${role.value?.code}] ${role.value?.name}`,
+    label: role.value?.name,
   });
 };
 
@@ -59,7 +59,7 @@ const onRestored = async () => {
 const onDeleteModal = () => {
   deleteModalRef.value.toggleModal({
     _id: role.value?._id,
-    label: `[${role.value?.code}] ${role.value?.name}`,
+    label: role.value?.name,
   });
 };
 

@@ -19,7 +19,7 @@ onMounted(async () => {
 
 <template>
   <div class="content-container">
-    <card-breadcrumbs :role_identifier="`${role?.code} - ${role?.name}`" />
+    <card-breadcrumbs :role_identifier="role?.name" />
     <card-table />
   </div>
 </template>

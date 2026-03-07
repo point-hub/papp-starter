@@ -1,7 +1,6 @@
 import { reactive } from 'vue';
 
 export interface IForm {
-  code?: string
   name?: string
   notes?: string
   permissions?: string[]
@@ -10,7 +9,6 @@ export interface IForm {
 }
 
 export interface IFormError {
-  code?: string[]
   name?: string[]
   notes?: string[]
   permissions?: string[]
@@ -20,7 +18,6 @@ export interface IFormError {
 
 export function useForm() {
   const defaultForm: IForm = {
-    code: undefined,
     name: undefined,
     notes: undefined,
     permissions: undefined,
@@ -28,7 +25,6 @@ export function useForm() {
   };
 
   const defaultFormError: IFormError = {
-    code: [],
     name: [],
     permissions: [],
     notes: [],

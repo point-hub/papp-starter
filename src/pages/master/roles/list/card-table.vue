@@ -29,7 +29,6 @@ const {
   resetTableSetting,
 } = useTableSetting({
   columns: {
-    code: { label: 'Code', isVisible: true, isSelectable: false },
     name: { label: 'Name', isVisible: true, isSelectable: false },
     notes: { label: 'Notes', isVisible: false, isSelectable: true },
     is_archived: { label: 'Is Archived', isVisible: false, isSelectable: true },
@@ -52,13 +51,11 @@ const {
 } = useTableFilter({
   initialFilter: {
     all: '',
-    code: '',
     name: '',
     notes: '',
     is_archived: 'false',
   },
   initialSortKeys: {
-    code: 0,
     name: 0,
     notes: 0,
     is_archived: 0,
@@ -301,9 +298,6 @@ watch(sort, async () => {
             <th class="w-1"></th>
 
             <!-- Render filter inputs for visible columns -->
-            <th v-if="columns['code']?.isVisible">
-              <base-input v-model="filter.code" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
-            </th>
             <th v-if="columns['name']?.isVisible">
               <base-input v-model="filter.name" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
             </th>
@@ -382,9 +376,6 @@ watch(sort, async () => {
               </td>
 
               <!-- Role fields rendered conditionally based on column visibility -->
-              <td v-if="columns['code']?.isVisible">
-                <router-link :to="`/master/roles/${role._id}`" class="text-blue">{{ role.code }}</router-link>
-              </td>
               <td v-if="columns['name']?.isVisible">
                 <router-link :to="`/master/roles/${role._id}`" class="text-blue">{{ role.name }}</router-link>
               </td>
