@@ -3,7 +3,6 @@ import { computed, ref } from 'vue';
 import { usePasswordValidation } from '@/composables/password-validation';
 
 export interface IForm {
-  name: string
   username: string
   email: string
   password: string
@@ -12,7 +11,6 @@ export interface IForm {
 }
 
 export interface IFormError {
-  name: string[]
   username: string[]
   email: string[]
   password: string[]
@@ -21,10 +19,7 @@ export interface IFormError {
 }
 
 export function useForm() {
-  const passwordValidation = usePasswordValidation();
-
   const defaultData: IForm = {
-    name: '',
     username: '',
     email: '',
     password: '',
@@ -33,7 +28,6 @@ export function useForm() {
   };
 
   const defaultErrors: IFormError = {
-    name: [],
     username: [],
     email: [],
     password: [],
@@ -49,16 +43,18 @@ export function useForm() {
     errors.value = { ...defaultErrors };
   };
 
+  const passwordValidation = usePasswordValidation();
+
   const isPasswordConfirmed = computed(() => {
     if (!data.value.password || !data.value.confirm_password) {
       return false;
     }
     return (
       data.value.password.length > 0 &&
-          data.value.confirm_password.length > 0 &&
-          data.value.password && data.value.confirm_password &&
-          errors.value.password.length === 0 &&
-          errors.value.confirm_password.length === 0
+      data.value.confirm_password.length > 0 &&
+      data.value.password && data.value.confirm_password &&
+      errors.value.password.length === 0 &&
+      errors.value.confirm_password.length === 0
     );
   });
 

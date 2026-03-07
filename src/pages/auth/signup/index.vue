@@ -9,6 +9,7 @@ import { handleError } from '@/utils/api';
 
 import { useForm } from './form';
 import signupSuccess from './signup-success.vue';
+import { validateRequiredFields } from '@/utils/validation';
 
 const form = useForm();
 const password = usePassword();
@@ -39,6 +40,10 @@ const onEmailChange = async () => {
 };
 
 const onSubmit = async () => {
+  if (!validateRequiredFields(form.data.value, ['username', 'email', 'password'], form.errors.value)) {
+    return toast('Validation failed, Please check the highlighted fields.', { color: 'danger' });
+  }
+
   if ((form.errors.value.password?.length ?? 0) > 0) {
     return toast('Please use a strong password', { color: 'danger' });
   }
@@ -63,7 +68,6 @@ const onSubmit = async () => {
     const errorResponse = handleError(error);
 
     if (errorResponse.errors) {
-      form.errors.value.name = errorResponse.errors.name || [];
       form.errors.value.username = errorResponse.errors.username || [];
       form.errors.value.email = errorResponse.errors.email || [];
       form.errors.value.password = errorResponse.errors.password || [];
@@ -85,7 +89,6 @@ const onSubmit = async () => {
   <base-card v-if="!isSignupSuccess" class="max-w-xl">
     <div class="flex flex-col gap-8">
       <div class="flex flex-col gap-4">
-        <base-input label="Name" layout="vertical" v-model="form.data.value.name" :errors="form.errors.value.name" />
         <base-input required label="Username" layout="vertical" v-model="form.data.value.username" :errors="form.errors.value.username" />
         <base-input required label="Email" layout="vertical" v-model="form.data.value.email" :errors="form.errors.value.email" @change="onEmailChange" />
 
@@ -127,9 +130,9 @@ const onSubmit = async () => {
           <base-checkbox v-model="form.data.value.accept_terms" />
           <p>
             Accept
-            <a href="https://pointhub.net/privacy" target="_blank">Privacy</a>
+            <a href="https://pointhub.net/terms" class="text-blue-600" target="_blank">Terms</a>
             &
-            <a href="https://pointhub.net/terms" target="_blank">Terms</a>
+            <a href="https://pointhub.net/privacy" class="text-blue-600" target="_blank">Privacy</a>
           </p>
         </div>
       </div>
