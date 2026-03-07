@@ -29,13 +29,12 @@ const {
   resetTableSetting,
 } = useTableSetting({
   columns: {
-    username: { label: 'Username', isVisible: true, isSelectable: false },
-    name: { label: 'Name', isVisible: false, isSelectable: true },
-    email: { label: 'Email', isVisible: true, isSelectable: false },
-    'role.code': { label: 'Role (Code)', isVisible: true, isSelectable: true },
-    'role.name': { label: 'Role (Name)', isVisible: true, isSelectable: true },
-    notes: { label: 'Notes', isVisible: false, isSelectable: true },
-    is_archived: { label: 'Is Archived', isVisible: false, isSelectable: true },
+    'username': { label: 'Username', isVisible: true, isSelectable: false },
+    'name': { label: 'Name', isVisible: false, isSelectable: true },
+    'email': { label: 'Email', isVisible: true, isSelectable: false },
+    'role.name': { label: 'Role', isVisible: true, isSelectable: true },
+    'notes': { label: 'Notes', isVisible: false, isSelectable: true },
+    'is_archived': { label: 'Is Archived', isVisible: false, isSelectable: true },
   },
 });
 
@@ -54,23 +53,21 @@ const {
   resetPagination,
 } = useTableFilter({
   initialFilter: {
-    all: '',
-    username: '',
-    name: '',
-    email: '',
-    'role.code': '',
+    'all': '',
+    'username': '',
+    'name': '',
+    'email': '',
     'role.name': '',
-    notes: '',
-    is_archived: 'false',
+    'notes': '',
+    'is_archived': 'false',
   },
   initialSortKeys: {
-    username: 0,
-    name: 0,
-    email: 0,
-    'role.code': 0,
+    'username': 0,
+    'name': 0,
+    'email': 0,
     'role.name': 0,
-    notes: 0,
-    is_archived: 0,
+    'notes': 0,
+    'is_archived': 0,
   },
 });
 
@@ -319,9 +316,6 @@ watch(sort, async () => {
             <th v-if="columns['email']?.isVisible">
               <base-input v-model="filter.email" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
             </th>
-            <th v-if="columns['role.code']?.isVisible">
-              <base-input v-model="filter['role.code']" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
-            </th>
             <th v-if="columns['role.name']?.isVisible">
               <base-input v-model="filter['role.name']" placeholder="Search..." :readonly="isLoading" border="none" paddingless />
             </th>
@@ -409,16 +403,7 @@ watch(sort, async () => {
               <td v-if="columns['email']?.isVisible">
                 <router-link :to="`/master/users/${user._id}`" class="text-blue-600">{{ user.email }}</router-link>
               </td>
-              <td v-if="columns['role.code']?.isVisible">
-                <router-link :to="`/master/roles/${user.role?._id}`" class="text-blue-600">
-                  {{ user.role.code }}
-                </router-link>
-              </td>
-              <td v-if="columns['role.name']?.isVisible">
-                <router-link :to="`/master/roles/${user.role?._id}`" class="text-blue-600">
-                  {{ user.role.name }}
-                </router-link>
-              </td>
+              <td v-if="columns['role.name']?.isVisible">{{ user.role.name }}</td>
               <td v-if="columns['notes']?.isVisible">{{ user.notes }}</td>
               <td v-if="columns['is_archived']?.isVisible">
                 <base-badge v-if="user.is_archived" variant="filled" color="danger" class="font-bold">

@@ -32,7 +32,7 @@ onMounted(async () => {
     form.data.notes = response.notes;
 
     selectedRole.value = {
-      label: `[${response.role.code}] ${response.role.name}`,
+      label: response.role.name,
       value: response.role._id,
     };
   } catch (error) {

@@ -19,7 +19,7 @@ const errors = defineModel<IFormError>('errors', {
 const roles = ref<IRoleData[]>([]);
 const options = computed(() =>
   roles.value.map((role: IRoleData) => ({
-    label: `[${role.code}] ${role.name}`,
+    label: role.name,
     value: role._id,
   })),
 );
