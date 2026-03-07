@@ -30,7 +30,7 @@ const {
 } = useTableSetting({
   columns: {
     username: { label: 'Username', isVisible: true, isSelectable: false },
-    name: { label: 'Name', isVisible: true, isSelectable: false },
+    name: { label: 'Name', isVisible: false, isSelectable: true },
     email: { label: 'Email', isVisible: true, isSelectable: false },
     'role.code': { label: 'Role (Code)', isVisible: true, isSelectable: true },
     'role.name': { label: 'Role (Name)', isVisible: true, isSelectable: true },

@@ -17,7 +17,7 @@ const isSaving = defineModel('is-saving', { default: false });
 <template>
   <base-card title="User Information">
     <div class="flex flex-col gap-2">
-      <base-input required v-model="data.name" label="Name" :errors="errors.name" :disabled="isSaving" />
+      <base-input v-model="data.name" label="Name" :errors="errors.name" :disabled="isSaving" />
     </div>
   </base-card>
 </template>
