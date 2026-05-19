@@ -9,6 +9,10 @@ export default defineConfig({
   viewportWidth: 1280,
   viewportHeight: 720,
 
+  video: true,
+  videosFolder: 'cypress/videos',
+  videoCompression: 32,
+
   reporter: 'cypress-mochawesome-reporter',
 
   reporterOptions: {
