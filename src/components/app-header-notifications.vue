@@ -135,7 +135,7 @@ watch(
                 </div>
               </div>
               <div v-if="logs.data.length > 0" class="overflow-y-auto flex flex-col gap-4 max-h-80 -mx-4 px-4">
-                <div v-for="log in logs.data">
+                <div v-for="(log, index) in logs.data" :key="index">
                   <router-link :to="getEntityLink({ entity_type: log.entity_type, entity_id: log.entity_id })" class="flex items-start space-x-2" @click="notificationPopoverRef.toggle(false)">
                     <div>
                       <div v-if="log.action === 'create'" class="bg-info/10 dark:bg-info/15 h-10 w-10 flex shrink-0 items-center justify-center rounded-lg">

@@ -1,7 +1,7 @@
-export function validateRequiredFields<T extends Record<string, any>>(
+export function validateRequiredFields<T extends Record<string, unknown>>(
   data: T,
   requiredFields: (keyof T)[],
-  errors: Record<keyof T, string[]>
+  errors: Record<keyof T, string[]>,
 ): boolean {
   let hasError = false;
 

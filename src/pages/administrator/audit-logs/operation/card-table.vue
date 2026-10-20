@@ -145,7 +145,7 @@ const getChangedKeys = (
       </base-table>
       <h1 class="text-3xl">Entity Changes</h1>
       <base-timeline>
-        <base-timeline-content v-for="(auditLog, index) in auditLogs?.data">
+        <base-timeline-content v-for="(auditLog, index) in auditLogs?.data" :key="index">
           <template #point>
             <div class="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold">
               {{ index + 1 }}

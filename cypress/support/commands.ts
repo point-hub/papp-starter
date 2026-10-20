@@ -36,6 +36,24 @@
 //   }
 // }
 
+
 import 'cypress-file-upload';
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Cypress {
+    interface Chainable {
+      login(): Chainable<void>;
+    }
+  }
+}
+
+Cypress.Commands.add('login', () => {
+  cy.visit('/signin');
+
+  cy.get('[data-testid="input-username"]').type('admin');
+  cy.get('[data-testid="input-password"]').type('Abcde123!');
+  cy.get('[data-testid="button-signin"]').click();
+});
 
 export {};

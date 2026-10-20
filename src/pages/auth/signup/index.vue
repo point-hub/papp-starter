@@ -6,10 +6,10 @@ import { signupApi } from '@/composables/api/master/auth/signup.api';
 import { usePassword } from '@/composables/password';
 import { toast } from '@/toast';
 import { handleError } from '@/utils/api';
+import { validateRequiredFields } from '@/utils/validation';
 
 import { useForm } from './form';
 import signupSuccess from './signup-success.vue';
-import { validateRequiredFields } from '@/utils/validation';
 
 const form = useForm();
 const password = usePassword();

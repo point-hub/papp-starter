@@ -68,6 +68,7 @@ const router = createRouter({
   },
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 router.beforeEach(async (to, from) => {
   const authStore = useAuthStore();
 
