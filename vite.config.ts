@@ -10,7 +10,7 @@ export default ({ mode }: { mode: string }) => {
     plugins: [vue(), UnoCSS()],
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src'),
+        '@': resolve(import.meta.dirname, './src'),
       },
     },
     esbuild: mode === 'production' ? { drop: ['console', 'debugger'] } : {},
