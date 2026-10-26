@@ -11,11 +11,38 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
+      path: '',
       children: [
         {
-          path: '',
-          redirect: '/home',
+          path: '/mobile',
+          component: () => import('@/layouts/bottom-bar.vue'),
+          children: [
+            {
+              path: '/mobile',
+              component: () => import('@/pages/mobile.vue'),
+              meta: { requiresAuth: true },
+            },
+            {
+              path: '/mobile-sidebar',
+              component: () => import('@/pages/mobile-sidebar.vue'),
+              meta: { requiresAuth: true },
+            },
+            {
+              path: '/mobile-aside',
+              component: () => import('@/pages/mobile-aside.vue'),
+              meta: { requiresAuth: true },
+            },
+            {
+              path: '/mobile-sidebar-aside',
+              component: () => import('@/pages/mobile-sidebar-aside.vue'),
+              meta: { requiresAuth: true },
+            },
+            {
+              path: '/notifications',
+              component: () => import('@/pages/notifications.vue'),
+              meta: { requiresAuth: true },
+            },
+          ],
         },
         {
           path: '',

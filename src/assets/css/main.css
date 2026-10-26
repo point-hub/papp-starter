@@ -1,3 +1,30 @@
 @import './font.css';
 @import './base.css';
 @import './scrollbar.css';
+
+
+.animate-slide-up {
+  animation: slide-up 0.25s ease-out;
+}
+
+/* Fade effect for the overlay */
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+  opacity: 0;
+}
+
+/* Slide effect for the inner panel */
+.slide-up-enter-active .menu-panel,
+.slide-up-leave-active .menu-panel {
+  transition: transform 0.3s ease-out;
+}
+
+.slide-up-enter-from .menu-panel,
+.slide-up-leave-to .menu-panel {
+  transform: translateY(100%);
+}
