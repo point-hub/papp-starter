@@ -3,23 +3,23 @@ import { computed, reactive } from 'vue';
 import { usePasswordValidation } from '@/composables/password-validation';
 
 export interface IForm {
-  email: string
-  name: string
-  username: string
-  role_id: string
-  notes: string
-  password: string
-  confirm_password: string
+  email?: string
+  name?: string
+  username?: string
+  role_id?: string
+  notes?: string
+  password?: string
+  confirm_password?: string
 }
 
 export interface IFormError {
-  email: string[]
-  name: string[]
-  username: string[]
-  role_id: string[]
-  notes: string[]
-  password: string[]
-  confirm_password: string[]
+  email?: string[]
+  name?: string[]
+  username?: string[]
+  role_id?: string[]
+  notes?: string[]
+  password?: string[]
+  confirm_password?: string[]
 }
 
 export function useForm() {
@@ -60,8 +60,8 @@ export function useForm() {
       data.password.length > 0 &&
           data.confirm_password.length > 0 &&
           data.password && data.confirm_password &&
-          errors.password.length === 0 &&
-          errors.confirm_password.length === 0
+          errors.password?.length === 0 &&
+          errors.confirm_password?.length === 0
     );
   });
 

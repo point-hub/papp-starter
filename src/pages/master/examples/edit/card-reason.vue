@@ -3,12 +3,12 @@ import type { IForm, IFormError } from './form';
 
 const data = defineModel<IForm>('data', {
   default: () => ({
-    reason: undefined,
+    update_reason: undefined,
   }),
 });
 const errors = defineModel<IFormError>('errors', {
   default: () => ({
-    reason: [],
+    update_reason: [],
   }),
 });
 const isSaving = defineModel('is-saving', { default: false });

@@ -1,23 +1,23 @@
 import { reactive } from 'vue';
 
 export interface IForm {
-  email: string
-  name: string
-  username: string
-  role_id: string
-  notes: string
-  update_reason: string
-  is_archived: boolean
+  email?: string
+  name?: string
+  username?: string
+  role_id?: string
+  notes?: string
+  update_reason?: string
+  is_archived?: boolean
 }
 
 export interface IFormError {
-  email: string[]
-  name: string[]
-  username: string[]
-  role_id: string[]
-  notes: string[]
-  update_reason: string[]
-  is_archived: string[]
+  email?: string[]
+  name?: string[]
+  username?: string[]
+  role_id?: string[]
+  notes?: string[]
+  update_reason?: string[]
+  is_archived?: string[]
 }
 
 export function useForm() {

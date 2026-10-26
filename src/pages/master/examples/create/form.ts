@@ -12,14 +12,14 @@ export interface IForm {
 }
 
 export interface IFormError {
-  code: string[]
-  name: string[]
-  composite_unique_1: string[]
-  composite_unique_2: string[]
-  age: string[]
-  gender: string[]
-  optional_unique: string[]
-  notes: string[]
+  code?: string[]
+  name?: string[]
+  composite_unique_1?: string[]
+  composite_unique_2?: string[]
+  age?: string[]
+  gender?: string[]
+  optional_unique?: string[]
+  notes?: string[]
 }
 
 export function useForm() {

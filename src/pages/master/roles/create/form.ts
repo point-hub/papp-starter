@@ -7,9 +7,9 @@ export interface IForm {
 }
 
 export interface IFormError {
-  name: string[]
-  notes: string[]
-  permissions: string[]
+  name?: string[]
+  notes?: string[]
+  permissions?: string[]
 }
 
 export function useForm() {
